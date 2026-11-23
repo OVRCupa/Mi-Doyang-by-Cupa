@@ -1,0 +1,11 @@
+name: mi_doyang_core
+description: Motor de dominio, caja offline-first, grados, exámenes, equipo, torneos y privacidad ARCO para Mi Doyang by Cupa. Dart puro, sin Flutter.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.8.0
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.0

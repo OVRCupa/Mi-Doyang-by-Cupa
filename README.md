@@ -8,7 +8,7 @@
 - **v1.0 (MVP):** Windows (escritorio: recepción/administración) + Android (móvil: padres de familia e instructores).
 - **v1.2:** iOS (iPhone) desde la misma base de código Flutter.
 
-**Estado:** Fase de descubrimiento y diseño (PRD v0.1, Arquitectura v0.1, Diseño v0.1 y Privacidad LFPDPPP 2025 listos para revisión en **Compuerta C2**).
+**Estado:** MVP v0.1 funcional en **Windows y Android** (`core/` con 35 pruebas + `app/` con 10 pruebas de widget e integración, ambos con `analyze` limpio y Puerta de Calidad aprobada).
 
 ## Módulos principales
 1. **Personalización por academia:** logo, colores del dojang, datos de recibo, plan propio de cintas/grados (10.º Geup a Dan y puntas intermedias), horarios y tarifas (mensualidad, recargos, descuento familiar por hermanos).
@@ -19,7 +19,23 @@
 6. **Registros internos a torneos:** convocatorias, inscripción por modalidad (Kyorugi / Poomsae, peso, cinta), responsiva del tutor, control de cuota y registro de medallas/resultados.
 
 ## Cómo ejecutar
-*(El esqueleto de código en `core/` y `app/` se genera al aprobar la Compuerta C2)*
+
+```powershell
+$env:Path = "C:\src\flutter\bin;" + $env:Path
+
+# Motor de dominio (Dart puro)
+cd core
+dart analyze
+dart test
+
+# Aplicación multiplataforma (Windows + Android)
+cd ..\app
+flutter analyze
+flutter test
+flutter run -d windows
+# o en celular/emulador Android:
+flutter run -d android
+```
 
 ## Documentos
 - [Investigación y Precios](docs/research/competencia-precios.md) · [PRD](docs/prd.md) · [Decisiones](docs/decisiones.md) · [Arquitectura](docs/arquitectura.md) · [Diseño](docs/diseno.md) · [Privacidad](docs/privacidad.md) · [Riesgos](docs/riesgos.md) · [Bugs](docs/bugs.md)
