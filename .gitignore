@@ -1,0 +1,14 @@
+.env
+*.jks
+*.keystore
+key.properties
+*.pfx
+build/
+.dart_tool/
+.idea/
+.vscode/
+*.iml
+.flutter-plugins*
+/app/windows/flutter/ephemeral/
+/app/android/local.properties
+coverage/

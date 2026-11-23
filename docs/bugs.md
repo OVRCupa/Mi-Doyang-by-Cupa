@@ -1,0 +1,3 @@
+# Bugs
+
+Formato en la skill `romper-la-app`. Numera BUG-001, BUG-002…
