@@ -1,4 +1,4 @@
-# Reglas de este proyecto · Cupa Dojang (`gestion-academias`)
+# Reglas de este proyecto · Mi Doyang by Cupa (`gestion-academias`)
 
 Hereda las reglas del `CLAUDE.md` de la raíz del espacio. Lo de aquí gana si hay conflicto.
 

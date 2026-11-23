@@ -1,4 +1,4 @@
-# Arquitectura · Cupa Dojang: Gestión de Academias TKD
+# Arquitectura · Mi Doyang by Cupa
 
 **Versión:** 1.0 · 23 nov 2026 · Agente `arquitecto` · Decisiones detalladas en `docs/decisiones.md` (D-01 a D-12)
 
@@ -91,7 +91,7 @@ gestion-academias/
 ├── core/                                  # Paquete Dart puro (0 dependencias de Flutter/Supabase)
 │   ├── pubspec.yaml
 │   ├── lib/
-│   │   ├── cupa_dojang_core.dart
+│   │   ├── mi_doyang_core.dart
 │   │   └── src/
 │   │       ├── modelos/                   # Entidades inmutables y DTOs de dominio
 │   │       ├── finanzas/                  # Motor de estado de cuenta, recargos, descuentos por hermanos, abonos
@@ -125,7 +125,7 @@ gestion-academias/
     │   ├── tema/                          # Tokens visuales Dojang + ajuste dinámico de color de academia con contraste AA
     │   └── l10n/                          # Español de México (es_MX)
     ├── windows/                           # Configuración de compilación Windows Desktop
-    └── android/                           # Configuración Android (com.ovrcupa.dojang.academias)
+    └── android/                           # Configuración Android (com.ovrcupa.midoyang)
 ```
 
 ### Vistas adaptativas por plataforma y rol
@@ -216,7 +216,7 @@ erDiagram
 
 ### 6.1. Anatomía del Ticket de Comprobante de Pago
 
-Cada ticket generado por `Cupa Dojang` contiene exactamente los mismos datos tanto en el **rollo térmico físico (58 mm u 80 mm)** como en el **comprobante digital PDF / Imagen**:
+Cada ticket generado por `Mi Doyang by Cupa` contiene exactamente los mismos datos tanto en el **rollo térmico físico (58 mm u 80 mm)** como en el **comprobante digital PDF / Imagen**:
 
 1. **Encabezado de la Academia:** Escudo/logo (en PDF y en térmico monocromo dithering), nombre comercial del dojang, teléfono y dirección.
 2. **Identificación del Comprobante:**

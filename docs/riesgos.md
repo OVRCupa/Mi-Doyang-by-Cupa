@@ -1,4 +1,4 @@
-# Riesgos · Cupa Dojang: Gestión de Academias TKD
+# Riesgos · Mi Doyang by Cupa
 
 Registro vivo de riesgos técnicos, legales y comerciales del proyecto, con su probabilidad, impacto, estrategia de mitigación y agente/rol responsable.
 

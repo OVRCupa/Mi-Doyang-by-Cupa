@@ -1,4 +1,4 @@
-# Cupa Dojang: Gestión de Academias TKD
+# Mi Doyang by Cupa
 
 **Qué es:** Sistema integral de administración y operación para academias (dojangs) de Taekwondo, compuesto por una **app de escritorio para Windows** (administración, recepción, caja offline-first e impresión de tickets) vinculada a una **app móvil para Android** (y futuro iOS) para **padres de familia, alumnos e instructores**.
 

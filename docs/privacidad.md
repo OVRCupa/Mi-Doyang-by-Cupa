@@ -1,6 +1,6 @@
-# Privacidad y Protección de Datos Personales · Cupa Dojang (Gestión de Academias TKD)
+# Privacidad y Protección de Datos Personales · Mi Doyang by Cupa (Gestión de Academias TKD)
 
-> **Aviso importante:** Este documento define la arquitectura de privacidad, el inventario de datos, la matriz de roles legales y los controles técnicos de **Cupa Dojang** siguiendo la skill `privacidad-mx`. No sustituye la asesoría jurídica profesional. Antes de superar la compuerta de lanzamiento (**C4**), un abogado especialista en derecho digital y protección de datos en México debe validar este documento y las plantillas en `legal/`.
+> **Aviso importante:** Este documento define la arquitectura de privacidad, el inventario de datos, la matriz de roles legales y los controles técnicos de **Mi Doyang by Cupa** siguiendo la skill `privacidad-mx`. No sustituye la asesoría jurídica profesional. Antes de superar la compuerta de lanzamiento (**C4**), un abogado especialista en derecho digital y protección de datos en México debe validar este documento y las plantillas en `legal/`.
 
 ---
 
@@ -10,7 +10,7 @@
    - **Autoridad competente:** **Secretaría Anticorrupción y Buen Gobierno** (tras la extinción del INAI). Las resoluciones son impugnables vía juicio de amparo ante el Poder Judicial de la Federación.
    - **Disposiciones reglamentarias:** el Reglamento de la LFPDPPP continúa aplicándose en todo aquello que no se oponga a la Ley de 2025 (como los requisitos de información sobre transferencias, medidas de seguridad y procedimiento de bloqueo/supresión). *Se debe verificar antes de cada versión comercial si la Secretaría ha emitido nuevos lineamientos o reglamento.*
 2. **Interés superior de la niñez y patria potestad (Código Civil Federal / correlativos estatales y LGDNNA):** dado que la mayoría de los alumnos de una academia de Taekwondo son menores de 18 años, el tratamiento de sus datos personales requiere el consentimiento verificable de quien ejerce la **patria potestad o tutela legal**, con protección reforzada sobre su imagen (fotografía) y datos de salud.
-3. **Ley Federal de Protección al Consumidor (LFPC — Profeco):** aplicable a la comercialización de la suscripción SaaS de **Cupa Dojang** hacia las academias (Art. 7, 7 Bis y 76 Bis LFPC): exhibición del precio total en pesos mexicanos (MXN) con IVA incluido, periodicidad clara, identidad y domicilio del proveedor, mecanismo de cancelación directo sin penalizaciones ocultas y garantía de exportación de datos al término del servicio.
+3. **Ley Federal de Protección al Consumidor (LFPC — Profeco):** aplicable a la comercialización de la suscripción SaaS de **Mi Doyang by Cupa** hacia las academias (Art. 7, 7 Bis y 76 Bis LFPC): exhibición del precio total en pesos mexicanos (MXN) con IVA incluido, periodicidad clara, identidad y domicilio del proveedor, mecanismo de cancelación directo sin penalizaciones ocultas y garantía de exportación de datos al término del servicio.
 4. **Políticas de tiendas de aplicaciones:**
    - **Google Play Store:** URL pública de Aviso de Privacidad, coherencia estricta en el formulario de *Seguridad de los datos (Data Safety)*, flujo de eliminación de cuenta y datos accesible desde dentro de la app y en web, y cumplimiento de tratamiento de datos de menores autorizados por sus padres/tutores.
    - **Microsoft Store:** enlace visible al Aviso de Privacidad en la ficha de la tienda y dentro de la aplicación de escritorio para Windows.
@@ -19,7 +19,7 @@
 
 ## 2. ¿Quién es el responsable y quién es el encargado? (Roles legales)
 
-El modelo de negocio de **Cupa Dojang** es una plataforma B2B2C multi-academia (*multi-tenant*). Conforme al Paso 4 de `privacidad-mx` y a la LFPDPPP 2025, la distribución de responsabilidades legales se estructura en tres niveles claramente diferenciados:
+El modelo de negocio de **Mi Doyang by Cupa** es una plataforma B2B2C multi-academia (*multi-tenant*). Conforme al Paso 4 de `privacidad-mx` y a la LFPDPPP 2025, la distribución de responsabilidades legales se estructura en tres niveles claramente diferenciados:
 
 ### A. Datos de alumnos, padres/tutores e instructores del Dojang
 - **Responsable del tratamiento:** **La Academia de Taekwondo (Dojang cliente)** que contrata el software. La Academia es quien decide sobre la admisión de los alumnos, recaba sus inscripciones, fija las colegiaturas, organiza los exámenes de grado y determina las finalidades del tratamiento frente a las familias.
@@ -28,7 +28,7 @@ El modelo de negocio de **Cupa Dojang** es una plataforma B2B2C multi-academia (
   - **Obligaciones de CUPA como Encargada:** (i) tratar los datos únicamente conforme a las instrucciones de la Academia para proveer las funciones del sistema; (ii) implementar medidas de seguridad técnicas y administrativas (RLS, cifrado, bitácoras); (iii) guardar confidencialidad; (iv) no comercializar, ceder ni transferir los datos para fines propios; (v) permitir a la Academia atender solicitudes ARCO mediante las herramientas de exportación y borrado del sistema; y (vi) devolver y suprimir los datos al concluir la relación contractual.
 
 ### B. Datos comerciales y de facturación de las Academias clientes (Relación B2B)
-- **Responsable del tratamiento:** **CUPA** es **Responsable** únicamente respecto de los datos personales de identificación, contacto comercial, facturación fiscal (RFC, razón social, régimen fiscal) y control de suscripción de los **dueños, directores o administradores de las academias** que contratan la licencia de uso de **Cupa Dojang**.
+- **Responsable del tratamiento:** **CUPA** es **Responsable** únicamente respecto de los datos personales de identificación, contacto comercial, facturación fiscal (RFC, razón social, régimen fiscal) y control de suscripción de los **dueños, directores o administradores de las academias** que contratan la licencia de uso de **Mi Doyang by Cupa**.
 
 ### C. Subencargados / Proveedores de infraestructura en la nube
 - **Supabase Inc.** (infraestructura de nube alojada sobre Amazon Web Services — EE. UU.): actúa como **Subencargado** contratado por CUPA para proveer:
@@ -40,7 +40,7 @@ El modelo de negocio de **Cupa Dojang** es una plataforma B2B2C multi-academia (
 flowchart TD
     Tutor["Padre / Madre / Tutor Legal (Titular y representante del menor)"]
     Academia["La Academia / Dojang Cliente (RESPONSABLE de datos de alumnos y tutores)"]
-    CUPA["CUPA · Cupa Dojang (ENCARGADA respecto a alumnos/tutores · RESPONSABLE respecto al dueño de la academia)"]
+    CUPA["CUPA · Mi Doyang by Cupa (ENCARGADA respecto a alumnos/tutores · RESPONSABLE respecto al dueño de la academia)"]
     Supabase["Supabase Inc. (SUBENCARGADO de infraestructura en la nube: Auth, PostgreSQL RLS, Storage cifrado)"]
 
     Tutor -->|"Otorga consentimientos y datos del alumno"| Academia
@@ -56,8 +56,8 @@ El diseño de datos cumple el principio de **minimización**: todo campo en la b
 
 | Dato | De quién | Finalidad | ¿Obligatorio? | ¿Sensible? | Dónde se guarda | Quién lo ve | Conservación |
 |---|---|---|---|---|---|---|---|
-| **Nombre completo, teléfono, correo electrónico y nombre del Dojang** | Dueño / Administrador de la academia (Cliente B2B) | Crear cuenta de la academia, administrar la licencia de Cupa Dojang, soporte técnico y avisos operativos del servicio | Sí | No | Supabase (`auth.users`, tabla `academias`) | CUPA (soporte/facturación) y el propio Dueño (`dueno`) | Vigencia de la suscripción + 5 años (plazo fiscal si hubo facturación) |
-| **RFC, Razón Social, Régimen Fiscal, CP fiscal y correo de facturación** | Dueño / Administrador de la academia | Emisión de comprobantes fiscales digitales (CFDI) por la suscripción a Cupa Dojang | Opcional (solo si solicita factura) | No (Fiscal/Patrimonial) | Supabase (tabla `academias_datos_fiscales`) | CUPA (administración) y el propio Dueño (`dueno`) | 5 años conforme al Art. 30 del Código Fiscal de la Federación (CFF) |
+| **Nombre completo, teléfono, correo electrónico y nombre del Dojang** | Dueño / Administrador de la academia (Cliente B2B) | Crear cuenta de la academia, administrar la licencia de Mi Doyang by Cupa, soporte técnico y avisos operativos del servicio | Sí | No | Supabase (`auth.users`, tabla `academias`) | CUPA (soporte/facturación) y el propio Dueño (`dueno`) | Vigencia de la suscripción + 5 años (plazo fiscal si hubo facturación) |
+| **RFC, Razón Social, Régimen Fiscal, CP fiscal y correo de facturación** | Dueño / Administrador de la academia | Emisión de comprobantes fiscales digitales (CFDI) por la suscripción a Mi Doyang by Cupa | Opcional (solo si solicita factura) | No (Fiscal/Patrimonial) | Supabase (tabla `academias_datos_fiscales`) | CUPA (administración) y el propio Dueño (`dueno`) | 5 años conforme al Art. 30 del Código Fiscal de la Federación (CFF) |
 | **Nombre completo del padre/madre/tutor** | Padre, madre o tutor legal (o alumno mayor de edad) | Identificar al titular o representante legal del alumno menor de edad, emisión de recibos de pago y contacto con la academia | Sí | No | Supabase (tabla `tutores`) | `dueno`, `recepcion`, `instructor` (solo contacto de sus alumnos) y el propio `tutor` | Mientras el alumno esté activo en la academia + bloqueo de 30 días tras baja (o 5 años solo respecto de folios contables asociados) |
 | **Teléfono(s) de contacto y emergencia del tutor** | Padre, madre o tutor legal | Localización inmediata en caso de emergencia en el tatami y avisos de cobranza o actividades | Sí | No | Supabase (tabla `tutores`) | `dueno`, `recepcion`, `instructor` (en ficha de emergencia de clase) y el propio `tutor` | Mientras el alumno esté activo + bloqueo de 30 días tras baja definitiva |
 | **Correo electrónico del tutor** | Padre, madre o tutor legal | Credencial de inicio de sesión en la app móvil de padres, envío de comprobantes de pago, avisos de exámenes/torneos y canal de notificaciones ARCO | Sí | No | Supabase (`auth.users`, tabla `tutores`) | `dueno`, `recepcion` y el propio `tutor` | Mientras la cuenta del tutor esté activa + bloqueo de 30 días tras solicitud de eliminación |
@@ -73,7 +73,7 @@ El diseño de datos cumple el principio de **minimización**: todo campo en la b
 | **Historial de cargos, abonos, folios de tickets de pago y método de pago** (`efectivo`, `transferencia`, `terminal externa`) | Padre / Tutor (o alumno adulto) | Control de colegiaturas, inscripciones a exámenes/torneos, emisión de estados de cuenta y comprobantes internos de pago de la academia | Sí (para control de cobranza) | No (Patrimonial administrativo) | Supabase (tablas `cargos`, `pagos`, `tickets_pago`) | `dueno`, `recepcion` y el `tutor` titular de esos pagos (`tutor_id = auth.uid()`) | 5 años (conservación contable de folios para la academia; al cancelar al titular se disocian/bloquean los datos personales del alumno) |
 
 ### Regla de minimización y datos estrictamente prohibidos
-Para reducir la superficie de riesgo legal y de seguridad, **Cupa Dojang tiene prohibido solicitar o almacenar**:
+Para reducir la superficie de riesgo legal y de seguridad, **Mi Doyang by Cupa tiene prohibido solicitar o almacenar**:
 1. **Datos financieros críticos:** **NUNCA** se solicitan, procesan ni almacenan números de tarjetas de crédito o débito (PAN), fechas de expiración ni códigos de seguridad (CVV/CVC). El sistema solo registra el método de pago utilizado (`efectivo`, `transferencia SPEI`, `terminal bancaria física externa`) y el folio o referencia del comprobante.
 2. **Expedientes clínicos amplios:** no se piden historiales médicos generales, diagnósticos psicológicos o psiquiátricos no vinculados a la seguridad en el tatami, ni resultados de laboratorio.
 3. **Otros datos sensibles o identificadores oficiales innecesarios:** no se solicita CURP del menor, religión, origen étnico, datos biométricos (ni huella dactilar ni reconocimiento facial para asistencia) ni ubicación GPS del dispositivo móvil.
@@ -121,7 +121,7 @@ Conforme a la LFPDPPP 2025, la aplicación implementa un sistema granular de con
 ## 5. Proveedores (Subencargados) y transferencias de datos
 
 ### 5.1. Subencargados de tratamiento (No constituyen transferencia comercial)
-Para la operación técnica de **Cupa Dojang**, CUPA utiliza el siguiente proveedor de infraestructura en la nube bajo cláusulas de protección de datos y seguridad estándar de la industria:
+Para la operación técnica de **Mi Doyang by Cupa**, CUPA utiliza el siguiente proveedor de infraestructura en la nube bajo cláusulas de protección de datos y seguridad estándar de la industria:
 
 | Proveedor | Rol legal | Servicios utilizados | Ubicación de servidores | Garantías de seguridad |
 |---|---|---|---|---|
@@ -140,8 +140,8 @@ Para la operación técnica de **Cupa Dojang**, CUPA utiliza el siguiente provee
 Los titulares (padres/tutores por sí mismos y en representación de sus hijos menores, alumnos mayores de edad, instructores y dueños de academias) pueden ejercer sus derechos de **Acceso, Rectificación, Cancelación y Oposición (ARCO)**, así como revocar su consentimiento, en cualquier momento y de forma gratuita.
 
 ### 6.1. Responsable de atender solicitudes ARCO y canales
-1. **Para alumnos y padres/tutores:** la solicitud se dirige a la **Academia (Responsable)** directamente desde la sección `Mi Perfil > Privacidad y Derechos ARCO` de la app móvil del tutor, o en la recepción/correo de privacidad de la Academia. **Cupa Dojang** provee a la Academia el panel y las funciones técnicas automatizadas para cumplir en tiempo y forma.
-2. **Para dueños/administradores de academias (Clientes B2B) o solicitudes de apoyo directo:** a través del correo de privacidad de CUPA `{correo_privacidad_cupa — por definir antes de C4, ej. privacidad@cupadojang.mx}` o desde el panel de configuración de la academia en la aplicación de escritorio.
+1. **Para alumnos y padres/tutores:** la solicitud se dirige a la **Academia (Responsable)** directamente desde la sección `Mi Perfil > Privacidad y Derechos ARCO` de la app móvil del tutor, o en la recepción/correo de privacidad de la Academia. **Mi Doyang by Cupa** provee a la Academia el panel y las funciones técnicas automatizadas para cumplir en tiempo y forma.
+2. **Para dueños/administradores de academias (Clientes B2B) o solicitudes de apoyo directo:** a través del correo de privacidad de CUPA `{correo_privacidad_cupa — por definir antes de C4, ej. privacidad@midoyang.mx}` o desde el panel de configuración de la academia en la aplicación de escritorio.
 
 ### 6.2. Plazos legales obligatorios (LFPDPPP 2025)
 - **Verificación de identidad:** el sistema verifica la identidad del tutor mediante su sesión autenticada o mediante identificación oficial presentada ante la Academia.
@@ -149,7 +149,7 @@ Los titulares (padres/tutores por sí mismos y en representación de sus hijos m
 - **Plazo para hacer efectiva la determinación (si resulta procedente):** máximo **15 días hábiles** siguientes a la fecha en que se comunica la respuesta al titular.
 - *(Ambos plazos podrán ampliarse una sola vez por un periodo igual cuando así lo justifiquen las circunstancias del caso y se notifique al titular).*
 
-### 6.3. Funciones obligatorias integradas en el software (Cupa Dojang Desktop y App Móvil)
+### 6.3. Funciones obligatorias integradas en el software (Mi Doyang by Cupa Desktop y App Móvil)
 
 Para que las academias cumplan la ley sin fricción técnica, el software incluye de fábrica las siguientes funciones:
 

@@ -1,4 +1,4 @@
-# PRD · Cupa Dojang: Gestión de Academias TKD
+# PRD · Mi Doyang by Cupa
 
 **Versión:** 0.1 · **Fecha:** 23 nov 2026 · **Estado:** Borrador para aprobar en compuerta C2  
 **Proyecto:** `gestion-academias` · **Plataformas objetivo (v1.0):** Windows (escritorio) + Android (móvil/tablet)
@@ -30,7 +30,7 @@ Esta operación manual provoca cuatro dolores críticos y costosos para el dueñ
 
 ## 3. Propuesta de valor
 
-**Cupa Dojang: Gestión de Academias TKD** convierte la operación artesanal de una escuela de Taekwondo en una academia profesional, ordenada y con identidad propia, conectando el mostrador del dojang (Windows) con el tatami y el bolsillo de los padres de familia (Android).
+**Mi Doyang by Cupa** convierte la operación artesanal de una escuela de Taekwondo en una academia profesional, ordenada y con identidad propia, conectando el mostrador del dojang (Windows) con el tatami y el bolsillo de los padres de familia (Android).
 
 - **Para el Dueño del Dojang:** elimina fugas de dinero en mensualidades, venta de equipo, exámenes y torneos; entrega tickets de comprobante formales con el logo de su escuela (impresos en térmica o digitales) incluso si se corta el internet (*offline-first*); y profesionaliza la imagen de su academia frente a los padres.
 - **Para el Padre de Familia:** brinda tranquilidad y claridad desde una sola cuenta móvil para todos sus hijos, con acceso permanente a sus comprobantes de pago, calendario de exámenes/torneos, pedidos de equipo y progreso deportivo de cada hijo.
@@ -215,4 +215,4 @@ Los siguientes supuestos de negocio, operación y producto están marcados para 
 3. **[S3 · Impresión térmica vs comprobante digital]:** Validar en recepción cuántas academias ya cuentan con miniprinter térmica (58 mm u 80 mm) o desean adquirirla, frente a cuántas prefieren operar 100 % sin papel enviando el ticket en PDF/imagen por WhatsApp y directo a la app Android del padre.
 4. **[S4 · Complejidad de cintas intermedias (puntas) y reglas de examen]:** Confirmar con profesores de distintas asociaciones/escuelas que el modelo de catálogo configurable (grado, color, meses mínimos, asistencias mínimas y costo) cubre el 100 % de sus variantes de cintas intermedias (*puntas*) y criterios de elegibilidad sin requerir fórmulas personalizadas por escuela.
 5. **[S5 · Flujo de abonos en equipo, exámenes y torneos]:** Validar si en la práctica diaria las academias manejan una "cuenta corriente única por familia" o prefieren que cada abono se aplique directamente a un concepto específico (p. ej. "Abono $300 al Peto de Mateo" vs "Abono $300 al Examen de Sofía"). *En este PRD se asume la aplicación por concepto específico para que el ticket y el estado de entrega de equipo (M5) sean inequívocos.*
-6. **[S6 · Rol de responsable legal en aviso de privacidad]:** Confirmar con `legal-privacidad-mx` el esquema exacto del Aviso de Privacidad: la Academia (*Dojang*) actúa como **Responsable** del tratamiento de los datos personales de sus alumnos y padres, mientras que CUPA (*Cupa Dojang*) actúa como **Encargado** tecnológico que provee la plataforma y genera automáticamente el aviso personalizado de cada academia.
+6. **[S6 · Rol de responsable legal en aviso de privacidad]:** Confirmar con `legal-privacidad-mx` el esquema exacto del Aviso de Privacidad: la Academia (*Dojang*) actúa como **Responsable** del tratamiento de los datos personales de sus alumnos y padres, mientras que CUPA (*Mi Doyang by Cupa*) actúa como **Encargado** tecnológico que provee la plataforma y genera automáticamente el aviso personalizado de cada academia.

@@ -1,4 +1,4 @@
-# Términos y Condiciones de Uso y Contrato de Encargo de Tratamiento de Datos Personales · Cupa Dojang
+# Términos y Condiciones de Uso y Contrato de Encargo de Tratamiento de Datos Personales · Mi Doyang by Cupa
 
 > **Nota para revisión jurídica (Compuerta C4):** Este documento regula tanto la relación comercial de consumo/SaaS conforme a la **Ley Federal de Protección al Consumidor (LFPC — Profeco)** como el **Contrato de Encargo de Tratamiento de Datos Personales** entre cada Academia de Taekwondo (**Responsable**) y **CUPA** (**Encargada**) conforme a la **Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) vigente desde el 21 de marzo de 2025**. Debe ser validado por un abogado antes del primer lanzamiento comercial.
 
@@ -9,20 +9,20 @@
 
 ## 1. Identidad y datos del Proveedor (Cumplimiento Profeco)
 
-En cumplimiento con el artículo 76 Bis de la Ley Federal de Protección al Consumidor (LFPC), se informa que la plataforma de software **Cupa Dojang: Gestión de Academias TKD** (en adelante, **"Cupa Dojang"** o la **"Plataforma"**) es operada y comercializada en los Estados Unidos Mexicanos por:
+En cumplimiento con el artículo 76 Bis de la Ley Federal de Protección al Consumidor (LFPC), se informa que la plataforma de software **Mi Doyang by Cupa** (en adelante, **"Mi Doyang by Cupa"** o la **"Plataforma"**) es operada y comercializada en los Estados Unidos Mexicanos por:
 
 - **Proveedor / Razón social o Titular Fiscal:** `{Razón social o nombre completo del contribuyente titular de CUPA — pendiente de confirmar antes de C4}` (en adelante, **"CUPA"**).
 - **RFC:** `{RFC_de_CUPA — pendiente de confirmar}`.
 - **Domicilio físico en México:** `{Calle, número, colonia, código postal, municipio/alcaldía, entidad federativa — pendiente de confirmar}`.
-- **Correo electrónico de atención a clientes y soporte:** `{soporte@cupadojang.mx — pendiente de confirmar}`.
-- **Correo electrónico de privacidad y protección de datos:** `{privacidad@cupadojang.mx — pendiente de confirmar}`.
+- **Correo electrónico de atención a clientes y soporte:** `{soporte@midoyang.mx — pendiente de confirmar}`.
+- **Correo electrónico de privacidad y protección de datos:** `{privacidad@midoyang.mx — pendiente de confirmar}`.
 - **Teléfono de contacto:** `{Teléfono con clave LADA — pendiente de confirmar}` (horario de atención: lunes a viernes de 9:00 a 18:00 horas, tiempo del centro de México).
 
 ---
 
 ## 2. Descripción del servicio
 
-**Cupa Dojang** es un sistema de software como servicio (*SaaS*) multiplataforma —integrado por una aplicación de escritorio para **Windows** y una aplicación móvil para **Android**— diseñado para la administración integral de academias y escuelas de Taekwondo (*Dojangs*). Sus funciones principales incluyen:
+**Mi Doyang by Cupa** es un sistema de software como servicio (*SaaS*) multiplataforma —integrado por una aplicación de escritorio para **Windows** y una aplicación móvil para **Android**— diseñado para la administración integral de academias y escuelas de Taekwondo (*Dojangs*). Sus funciones principales incluyen:
 
 1. **Gestión de alumnos y tutores:** expediente deportivo del alumno (grado/cinta Kup, Poom o Dan, fecha de nacimiento, categoría, peso opcional para combate, fotografía opcional de credencial y alertas médicas opcionales para seguridad en el tatami) vinculado a su padre, madre o tutor legal.
 2. **Control de asistencia y clases:** registro de asistencia por grupo, horario e instructor.
@@ -36,7 +36,7 @@ En cumplimiento con el artículo 76 Bis de la Ley Federal de Protección al Cons
 ## 3. Precios en MXN con IVA, facturación, renovación y cancelación sin penas ocultas (Profeco)
 
 ### 3.1. Precios totales en Pesos Mexicanos (MXN) con IVA incluido
-Conforme al artículo 7 Bis de la LFPC, todos los precios de suscripción a **Cupa Dojang** se exhiben y cobran en **Pesos Mexicanos (MXN)** e **incluyen el 16% del Impuesto al Valor Agregado (IVA)** y cualquier otro cargo aplicable, constituyendo el **monto total a pagar**:
+Conforme al artículo 7 Bis de la LFPC, todos los precios de suscripción a **Mi Doyang by Cupa** se exhiben y cobran en **Pesos Mexicanos (MXN)** e **incluyen el 16% del Impuesto al Valor Agregado (IVA)** y cualquier otro cargo aplicable, constituyendo el **monto total a pagar**:
 
 | Plan de Suscripción | Periodicidad | Precio Total (MXN con IVA incluido) | Alcance incluido |
 |---|---|---|---|
@@ -52,7 +52,7 @@ Conforme al artículo 7 Bis de la LFPC, todos los precios de suscripción a **Cu
 
 ### 3.3. Cancelación inmediata, sin penas ocultas y con exportación garantizada de datos
 1. **Sin plazos forzosos ni penalizaciones:** La Academia puede cancelar su suscripción en cualquier momento, **sin penalizaciones, cargos por cancelación ni requisitos engorrosos**.
-2. **Cómo cancelar:** Directamente desde la aplicación de escritorio en `Configuración de Academia > Suscripción > Cancelar suscripción` en un máximo de dos clics, o enviando un correo a `{soporte@cupadojang.mx}`. Al cancelar, el sistema emite de inmediato un folio de confirmación de cancelación.
+2. **Cómo cancelar:** Directamente desde la aplicación de escritorio en `Configuración de Academia > Suscripción > Cancelar suscripción` en un máximo de dos clics, o enviando un correo a `{soporte@midoyang.mx}`. Al cancelar, el sistema emite de inmediato un folio de confirmación de cancelación.
 3. **Efectos de la cancelación:**
    - La Academia conservará el acceso completo al servicio durante los días restantes del periodo mensual o anual que ya hubiera pagado.
    - No se realizará ningún cargo futuro a partir del momento de la cancelación.
@@ -63,8 +63,8 @@ Conforme al artículo 7 Bis de la LFPC, todos los precios de suscripción a **Cu
 
 ## 4. Licencia de uso y propiedad intelectual
 
-1. **Titularidad del software:** **CUPA** es titular única de todos los derechos de propiedad intelectual, código fuente, diseño visual, logotipos y arquitectura de **Cupa Dojang**.
-2. **Alcance de la licencia:** Durante la vigencia de la suscripción, CUPA otorga a la Academia una licencia limitada, no exclusiva, intransferible, no sublicenciable y revocable para utilizar **Cupa Dojang** exclusivamente en la administración interna de su Dojang.
+1. **Titularidad del software:** **CUPA** es titular única de todos los derechos de propiedad intelectual, código fuente, diseño visual, logotipos y arquitectura de **Mi Doyang by Cupa**.
+2. **Alcance de la licencia:** Durante la vigencia de la suscripción, CUPA otorga a la Academia una licencia limitada, no exclusiva, intransferible, no sublicenciable y revocable para utilizar **Mi Doyang by Cupa** exclusivamente en la administración interna de su Dojang.
 3. **Titularidad de los datos de la Academia:** **La Academia conserva en todo momento la titularidad y responsabilidad sobre su base de datos de alumnos, padres/tutores, instructores y registros operativos.** CUPA no adquiere ningún derecho de propiedad sobre los datos ingresados por la Academia.
 
 ---
@@ -83,11 +83,11 @@ Las presentes cláusulas constituyen el **Contrato de Encargo de Tratamiento de 
 
 ### Cláusula 6.1. Delimitación de roles legales
 1. **La Academia como Responsable:** La Academia es la única **Responsable** del tratamiento de los datos personales de sus alumnos (incluidos menores de edad), padres de familia, tutores legales e instructores, toda vez que es quien decide sobre el tratamiento, recaba las inscripciones y mantiene la relación jurídica y educativa directa con las familias.
-2. **CUPA como Encargada:** Respecto de dichos datos personales, **CUPA actúa única y exclusivamente como Encargada**, tratándolos por cuenta, nombre y bajo las instrucciones documentadas de La Academia a través de las funcionalidades técnicas de **Cupa Dojang**.
+2. **CUPA como Encargada:** Respecto de dichos datos personales, **CUPA actúa única y exclusivamente como Encargada**, tratándolos por cuenta, nombre y bajo las instrucciones documentadas de La Academia a través de las funcionalidades técnicas de **Mi Doyang by Cupa**.
 
 ### Cláusula 6.2. Obligaciones de CUPA como Encargada
 CUPA se obliga expresamente frente a La Academia a:
-1. **Tratar los datos únicamente conforme a las instrucciones del Responsable:** Procesar los datos personales de alumnos, tutores e instructores con la única finalidad de proveer los servicios de alojamiento, cómputo, sincronización y gestión de **Cupa Dojang**.
+1. **Tratar los datos únicamente conforme a las instrucciones del Responsable:** Procesar los datos personales de alumnos, tutores e instructores con la única finalidad de proveer los servicios de alojamiento, cómputo, sincronización y gestión de **Mi Doyang by Cupa**.
 2. **Prohibición absoluta de uso propio o comercialización:** Abstenerse de utilizar los datos personales de los alumnos o padres de familia para fines propios de CUPA, perfilamiento publicitario, venta, cesión o comercialización a terceros.
 3. **Confidencialidad:** Garantizar que cualquier persona o colaborador de CUPA con acceso técnico de soporte guarde estricto secreto y confidencialidad respecto de los datos personales, obligación que subsistirá aun después de finalizada la relación con La Academia.
 4. **No realizar transferencias no autorizadas:** No transferir los datos personales a terceros, salvo a los subencargados de infraestructura en la nube expresamente autorizados en la Cláusula 6.5 o por mandato de autoridad competente.
@@ -112,7 +112,7 @@ Como Responsable frente a sus alumnos y padres de familia, La Academia se obliga
    - Verificar que la inscripción de alumnos menores de 18 años sea realizada o autorizada por quien ejerce la **patria potestad o tutela legal**.
    - Recabar el **consentimiento expreso y por escrito** (mediante el mecanismo electrónico de casilla separada y sesión autenticada del tutor) antes de registrar datos sensibles de salud (tipo de sangre y alergias/lesiones relevantes para el tatami).
    - Respetar el carácter opcional de la fotografía del menor y de los avisos promocionales.
-3. **Atender las solicitudes de Derechos ARCO:** Resolver las solicitudes de Acceso, Rectificación, Cancelación, Oposición y revocación del consentimiento de sus alumnos y tutores dentro de los plazos legales (**20 días hábiles** para responder y **15 días hábiles** para ejecutar), utilizando las herramientas técnicas provistas en **Cupa Dojang**.
+3. **Atender las solicitudes de Derechos ARCO:** Resolver las solicitudes de Acceso, Rectificación, Cancelación, Oposición y revocación del consentimiento de sus alumnos y tutores dentro de los plazos legales (**20 días hábiles** para responder y **15 días hábiles** para ejecutar), utilizando las herramientas técnicas provistas en **Mi Doyang by Cupa**.
 
 ### Cláusula 6.5. Subencargados de infraestructura en la nube
 La Academia autoriza a CUPA a subcontratar los servicios de infraestructura tecnológica en la nube de **Supabase Inc.** (alojados en centros de datos de Amazon Web Services en Estados Unidos de América) para la operación de autenticación (`Supabase Auth`), base de datos relacional (`PostgreSQL`) y almacenamiento de objetos cifrado (`Supabase Storage`). CUPA verifica que dicho subencargado mantenga compromisos de protección de datos y seguridad equivalentes a los establecidos en este contrato.
@@ -136,7 +136,7 @@ Al concluir la suscripción o relación contractual entre La Academia y CUPA por
 
 ## 7. Disponibilidad, soporte y respaldos
 
-1. **Soporte técnico:** CUPA brinda soporte técnico por correo electrónico en `{soporte@cupadojang.mx}` en días hábiles de 9:00 a 18:00 horas (tiempo del centro de México), con tiempo de primera respuesta menor a 24 horas hábiles.
+1. **Soporte técnico:** CUPA brinda soporte técnico por correo electrónico en `{soporte@midoyang.mx}` en días hábiles de 9:00 a 18:00 horas (tiempo del centro de México), con tiempo de primera respuesta menor a 24 horas hábiles.
 2. **Respaldos:** La base de datos cuenta con respaldos automáticos diarios cifrados para recuperación ante desastres.
 3. **Mantenimiento programado:** Las ventanas de mantenimiento que requieran interrupción temporal se notificarán con al menos 24 horas de anticipación y se programarán preferentemente en horario nocturno.
 
@@ -144,8 +144,8 @@ Al concluir la suscripción o relación contractual entre La Academia y CUPA por
 
 ## 8. Limitación de responsabilidad
 
-1. **Herramienta administrativa y deportiva:** **Cupa Dojang** es una herramienta de gestión administrativa y deportiva. No es un sistema médico de diagnóstico ni sustituye la obligación de La Academia y sus instructores de supervisar físicamente la seguridad en el tatami, contar con botiquín de primeros auxilios y verificar la aptitud física de sus alumnos.
-2. **Independencia de federaciones oficiales:** **Cupa Dojang** es un software independiente desarrollado por CUPA y no constituye por sí mismo afiliación oficial a *World Taekwondo (WT)*, la *Federación Mexicana de Taekwondo (FMTKD)* ni ninguna asociación estatal. La validez oficial de los grados (Kup, Poom, Dan) o torneos gestionados en la Plataforma depende exclusivamente de los registros y afiliaciones que cada Academia tramite ante las instancias deportivas correspondientes.
+1. **Herramienta administrativa y deportiva:** **Mi Doyang by Cupa** es una herramienta de gestión administrativa y deportiva. No es un sistema médico de diagnóstico ni sustituye la obligación de La Academia y sus instructores de supervisar físicamente la seguridad en el tatami, contar con botiquín de primeros auxilios y verificar la aptitud física de sus alumnos.
+2. **Independencia de federaciones oficiales:** **Mi Doyang by Cupa** es un software independiente desarrollado por CUPA y no constituye por sí mismo afiliación oficial a *World Taekwondo (WT)*, la *Federación Mexicana de Taekwondo (FMTKD)* ni ninguna asociación estatal. La validez oficial de los grados (Kup, Poom, Dan) o torneos gestionados en la Plataforma depende exclusivamente de los registros y afiliaciones que cada Academia tramite ante las instancias deportivas correspondientes.
 3. **Veracidad de los datos ingresados:** La Academia y los padres/tutores son responsables de la exactitud de los datos ingresados (incluyendo alergias, tipo de sangre, peso y declaración de patria potestad).
 
 ---

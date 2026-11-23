@@ -1,6 +1,6 @@
-# Aviso de Privacidad Integral · Cupa Dojang (Gestión de Academias TKD)
+# Aviso de Privacidad Integral · Mi Doyang by Cupa (Gestión de Academias TKD)
 
-> **Nota para revisión jurídica (Compuerta C4):** Este documento contiene las **dos modalidades** del Aviso de Privacidad Integral requeridas por la arquitectura legal de **Cupa Dojang** bajo la **Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) vigente desde el 21 de marzo de 2025**:
+> **Nota para revisión jurídica (Compuerta C4):** Este documento contiene las **dos modalidades** del Aviso de Privacidad Integral requeridas por la arquitectura legal de **Mi Doyang by Cupa** bajo la **Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) vigente desde el 21 de marzo de 2025**:
 > - **PARTE I:** Aviso de Privacidad Integral de **CUPA** (como **Responsable** frente a los dueños/administradores de Academias que contratan el software y declaración de su carácter de **Encargada** respecto de la base de datos de alumnos).
 > - **PARTE II:** Plantilla de Aviso de Privacidad Integral de **La Academia / Dojang** (como **Responsable** frente a los padres de familia, tutores, alumnos e instructores), que el sistema personaliza dinámicamente con los datos fiscales y de contacto de cada academia cliente.
 >
@@ -15,13 +15,13 @@
 
 ## 1. Identidad y domicilio del Responsable
 
-**{Razón social o nombre del titular fiscal de CUPA — pendiente de confirmar con abogado}**, comercialmente conocido como **CUPA / Cupa Dojang** (en adelante, **"CUPA"**), con domicilio para oír y recibir notificaciones en **{Domicilio fiscal completo en México — pendiente de confirmar}** y correo electrónico de privacidad **{privacidad@cupadojang.mx — pendiente de confirmar}**, es el **Responsable** del uso y protección de los datos personales de los **dueños, directores, representantes legales y administradores de las academias de Taekwondo** que contratan o solicitan información sobre la plataforma **Cupa Dojang**.
+**{Razón social o nombre del titular fiscal de CUPA — pendiente de confirmar con abogado}**, comercialmente conocido como **CUPA / Mi Doyang by Cupa** (en adelante, **"CUPA"**), con domicilio para oír y recibir notificaciones en **{Domicilio fiscal completo en México — pendiente de confirmar}** y correo electrónico de privacidad **{privacidad@midoyang.mx — pendiente de confirmar}**, es el **Responsable** del uso y protección de los datos personales de los **dueños, directores, representantes legales y administradores de las academias de Taekwondo** que contratan o solicitan información sobre la plataforma **Mi Doyang by Cupa**.
 
 > **Delimitación del rol respecto a datos de alumnos y padres de familia:** Respecto de los datos personales de los alumnos (incluidos menores de edad), padres o tutores e instructores que cada Academia registra dentro de la plataforma, **la Academia cliente es la única Responsable del tratamiento** y **CUPA actúa exclusivamente como Encargada**, tratándolos por cuenta y bajo las instrucciones de la Academia conforme al Contrato de Encargo incluido en los Términos y Condiciones del Servicio.
 
 ## 2. Datos personales que recabamos de las Academias Clientes
 
-Para la contratación, configuración, facturación y soporte del software **Cupa Dojang**, CUPA recaba las siguientes categorías de datos personales del titular o administrador de la academia:
+Para la contratación, configuración, facturación y soporte del software **Mi Doyang by Cupa**, CUPA recaba las siguientes categorías de datos personales del titular o administrador de la academia:
 
 1. **Datos de identificación y contacto comercial:** nombre completo, nombre comercial del Dojang o academia, cargo o carácter con el que contrata, número telefónico, correo electrónico y domicilio de la academia.
 2. **Datos fiscales y de facturación (opcionales, si requiere CFDI):** Registro Federal de Contribuyentes (RFC), razón o denominación social, régimen fiscal, código postal fiscal y correo electrónico para recepción de facturas.
@@ -33,7 +33,7 @@ Para la contratación, configuración, facturación y soporte del software **Cup
 ## 3. Finalidades del tratamiento
 
 ### A. Finalidades primarias (necesarias para la relación jurídica y prestación del servicio)
-1. Crear, autenticar y administrar la cuenta maestra de la Academia (`dueno`) en la plataforma **Cupa Dojang**.
+1. Crear, autenticar y administrar la cuenta maestra de la Academia (`dueno`) en la plataforma **Mi Doyang by Cupa**.
 2. Configurar el espacio aislado (*tenant*) de la academia, sus sucursales, horarios y perfiles de usuario.
 3. Procesar el cobro de la suscripción o licencia de uso y, en su caso, emitir los Comprobantes Fiscales Digitales por Internet (CFDI) correspondientes.
 4. Brindar soporte técnico, mantenimiento, copias de seguridad, notificaciones operativas críticas y atención de incidentes de seguridad.
@@ -42,7 +42,7 @@ Para la contratación, configuración, facturación y soporte del software **Cup
 ### B. Finalidades secundarias (opcionales — no condicionan el servicio)
 1. Enviar boletines informativos sobre nuevas funciones, actualizaciones de productos de CUPA, invitaciones a seminarios o promociones comerciales de software deportivo.
 
-En el formulario de registro, la casilla para finalidades secundarias se presenta **desmarcada por defecto**. Si usted la aceptó y desea revocarla posteriormente, puede hacerlo en cualquier momento desde `Configuración > Privacidad` o escribiendo a **{privacidad@cupadojang.mx}**.
+En el formulario de registro, la casilla para finalidades secundarias se presenta **desmarcada por defecto**. Si usted la aceptó y desea revocarla posteriormente, puede hacerlo en cualquier momento desde `Configuración > Privacidad` o escribiendo a **{privacidad@midoyang.mx}**.
 
 ## 4. Encargados de infraestructura y transferencias de datos
 
@@ -55,7 +55,7 @@ Para el alojamiento seguro de la plataforma, CUPA se apoya en el siguiente prove
 
 Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (**Acceso**); solicitar la corrección de su información en caso de que esté desactualizada, sea inexacta o incompleta (**Rectificación**); que la eliminemos de nuestros registros o bases de datos (**Cancelación**); así como oponerse al uso de sus datos para fines específicos (**Oposición**), o bien **revocar su consentimiento**.
 
-- **Medio para presentar la solicitud:** desde el panel de escritorio de **Cupa Dojang** en `Configuración de Academia > Privacidad y Cuenta > Exportar o Eliminar Cuenta`, o enviando un correo electrónico a **{privacidad@cupadojang.mx}**.
+- **Medio para presentar la solicitud:** desde el panel de escritorio de **Mi Doyang by Cupa** en `Configuración de Academia > Privacidad y Cuenta > Exportar o Eliminar Cuenta`, o enviando un correo electrónico a **{privacidad@midoyang.mx}**.
 - **Requisitos de la solicitud:**
   1. Nombre completo del titular y correo electrónico registrado para comunicarle la respuesta.
   2. Documento que acredite su identidad (copia de identificación oficial vigente) o envío desde su sesión autenticada en la plataforma.
@@ -64,15 +64,15 @@ Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué 
 
 ## 6. Opciones para limitar el uso o divulgación de sus datos
 
-Usted puede limitar el uso o divulgación de sus datos personales para fines promocionales desactivando la opción de comunicaciones comerciales en el menú `Configuración > Notificaciones` de la aplicación o solicitando su inscripción en el listado interno de exclusión de CUPA al correo **{privacidad@cupadojang.mx}**.
+Usted puede limitar el uso o divulgación de sus datos personales para fines promocionales desactivando la opción de comunicaciones comerciales en el menú `Configuración > Notificaciones` de la aplicación o solicitando su inscripción en el listado interno de exclusión de CUPA al correo **{privacidad@midoyang.mx}**.
 
 ## 7. Uso de tecnologías de rastreo en la aplicación
 
-Las aplicaciones de escritorio (Windows) y móvil (Android) de **Cupa Dojang** utilizan tokens criptográficos de sesión almacenados de forma segura en el dispositivo (`flutter_secure_storage`) exclusivamente para mantener su sesión autenticada y proteger el aislamiento de su academia. **No utilizamos cookies publicitarias ni SDK de rastreo comercial de terceros.**
+Las aplicaciones de escritorio (Windows) y móvil (Android) de **Mi Doyang by Cupa** utilizan tokens criptográficos de sesión almacenados de forma segura en el dispositivo (`flutter_secure_storage`) exclusivamente para mantener su sesión autenticada y proteger el aislamiento de su academia. **No utilizamos cookies publicitarias ni SDK de rastreo comercial de terceros.**
 
 ## 8. Cambios al Aviso de Privacidad y autoridad competente
 
-Cualquier modificación al presente Aviso de Privacidad derivada de nuevos requerimientos legales o de nuevas funcionalidades del servicio será notificada a través de un aviso destacado dentro de la aplicación **Cupa Dojang** y por correo electrónico al administrador de la academia.
+Cualquier modificación al presente Aviso de Privacidad derivada de nuevos requerimientos legales o de nuevas funcionalidades del servicio será notificada a través de un aviso destacado dentro de la aplicación **Mi Doyang by Cupa** y por correo electrónico al administrador de la academia.
 
 Si usted considera que su derecho a la protección de sus datos personales ha sido lesionado, le informamos que la autoridad competente en México bajo la LFPDPPP vigente desde el 21 de marzo de 2025 es la **Secretaría Anticorrupción y Buen Gobierno**.
 
@@ -90,7 +90,7 @@ Si usted considera que su derecho a la protección de sus datos personales ha si
 
 **`{Razon_Social_o_Nombre_Titular_Academia}`**, que opera la academia de Taekwondo denominada comercialmente **`{Nombre_Comercial_Academia}`** (en adelante, **"La Academia"**), con domicilio en **`{Domicilio_Completo_Academia}`**, teléfono **`{Telefono_Academia}`** y correo electrónico de atención a privacidad **`{Correo_Privacidad_Academia}`**, es la **Responsable** del tratamiento y protección de los datos personales de sus **alumnos (incluidos menores de edad), padres de familia, madres, tutores legales e instructores**, conforme a la **Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)** vigente desde el 21 de marzo de 2025.
 
-**Plataforma tecnológica (Encargada del tratamiento):** Para la gestión administrativa, control de asistencias, grados, torneos y comunicación con las familias, La Academia utiliza el software **Cupa Dojang** provisto por **CUPA**, quien actúa estrictamente como **Encargada** del tratamiento por cuenta y bajo las instrucciones de La Academia, sin utilizar los datos de los alumnos ni de los tutores para finalidades propias.
+**Plataforma tecnológica (Encargada del tratamiento):** Para la gestión administrativa, control de asistencias, grados, torneos y comunicación con las familias, La Academia utiliza el software **Mi Doyang by Cupa** provisto por **CUPA**, quien actúa estrictamente como **Encargada** del tratamiento por cuenta y bajo las instrucciones de La Academia, sin utilizar los datos de los alumnos ni de los tutores para finalidades propias.
 
 ## 2. Datos personales que recaba La Academia
 
@@ -146,7 +146,7 @@ La Academia reconoce el interés superior de la niñez. Ningún menor de 18 año
 
 ### A. Encargados del tratamiento (sin transferencia comercial)
 Para operar el sistema escolar de forma segura, La Academia utiliza:
-1. **CUPA (Cupa Dojang):** proveedor en México del software de gestión para academias de Taekwondo, quien actúa como **Encargado** sujeto a obligaciones contractuales de confidencialidad y seguridad.
+1. **CUPA (Mi Doyang by Cupa):** proveedor en México del software de gestión para academias de Taekwondo, quien actúa como **Encargado** sujeto a obligaciones contractuales de confidencialidad y seguridad.
 2. **Supabase Inc.** (infraestructura en la nube sobre Amazon Web Services en EE. UU.): subencargado tecnológico para el alojamiento cifrado de la base de datos y archivos con aislamiento estricto por academia y por padre/tutor (*Row Level Security*).
 
 ### B. Transferencias de datos personales

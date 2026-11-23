@@ -1,7 +1,7 @@
-# Estudio de mercado, competencia y precios: Software de gestión para academias de Taekwondo (Cupa Dojang)
+# Estudio de mercado, competencia y precios: Software de gestión para academias de Taekwondo (Mi Doyang by Cupa)
 
 - **Fecha del estudio:** 23 de noviembre de 2026 (`2026-11-23`)
-- **Proyecto:** `gestion-academias` (**Cupa Dojang**)
+- **Proyecto:** `gestion-academias` (**Mi Doyang by Cupa**)
 - **Autor:** Agente `investigador`
 - **Alcance:** Software de administración escolar, cobros, control de grados (Geup/Poom/Dan), asistencia, venta de equipo, exámenes y torneos para academias (*dojangs*) de Taekwondo en México, frente a alternativas en EE. UU. y Latinoamérica.
 
@@ -14,7 +14,7 @@
 1. **[Conclusión principal — Opinión / Análisis]** El mercado mexicano de academias de Taekwondo (*dojangs*) se encuentra desatendido por el software actual: las plataformas especializadas en artes marciales de Estados Unidos (**Kicksite**, **Spark Membership**, **Gymdesk**, **Zen Planner**) están en inglés, cobran en dólares entre **US$49 y US$348+/mes** (**[Estimación]** ~MXN 1,000 a 7,000/mes) y están diseñadas para procesadores de pago estadounidenses (ACH/tarjetas domiciliadas en USD).
 2. **[Hecho / Análisis]** Por otro lado, los sistemas mexicanos y latinoamericanos para gimnasios (**BoxMagic**, **Membrix**, **Gym&i**, **Thanos/Sopvi**), aunque ofrecen precios accesibles en moneda local (**[Hecho]** entre MXN 399 y MXN 1,499/mes), están orientados a centros de *fitness*, CrossFit o gimnasios de pesas. No modelan el ciclo operativo y pedagógico real de un dojang de Taekwondo: progresión de grados **10.º Geup a 1.º Geup y Poom/Dan**, organización de **exámenes de grado con sinodal**, control de pagos mixtos (efectivo en recepción con ticket térmico + transferencia SPEI), venta de equipo reglamentario (*dobok*, petos, espinilleras, empeineras) y registro de competidores a **torneos** con peso, rama, categoría y grado.
 3. **[Diagnóstico de adopción — Opinión / Análisis]** El verdadero competidor en más del 85 % de los dojangs en México no es otro SaaS, sino la combinación de **libreta de asistencia + hojas de Excel + grupos de WhatsApp + talonarios de recibos de papelería**. Cualquier solución que no sea más rápida que anotar un pago en libreta en hora pico (16:00 a 21:00 h) o que falle cuando se cae el internet del local será abandonada por la recepción.
-4. **[Oportunidad para Cupa Dojang — Opinión / Análisis]** Existe una brecha clara para **Cupa Dojang** con una arquitectura híbrida **Windows (recepción *offline-first* con impresora térmica de tickets) + Android/iOS (app para padres/alumnos y profesor en tatami)** y precios en pesos mexicanos con IVA incluido entre **MXN 499 y MXN 1,299/mes**, posicionándose por debajo de cualquier software extranjero de artes marciales y entregando valor específico de Taekwondo que los sistemas de gimnasio generalistas no cubren.
+4. **[Oportunidad para Mi Doyang by Cupa — Opinión / Análisis]** Existe una brecha clara para **Mi Doyang by Cupa** con una arquitectura híbrida **Windows (recepción *offline-first* con impresora térmica de tickets) + Android/iOS (app para padres/alumnos y profesor en tatami)** y precios en pesos mexicanos con IVA incluido entre **MXN 499 y MXN 1,299/mes**, posicionándose por debajo de cualquier software extranjero de artes marciales y entregando valor específico de Taekwondo que los sistemas de gimnasio generalistas no cubren.
 
 ---
 
@@ -88,7 +88,7 @@
 | **Membrix / Gym&i** | México / Español | Baja (asistencia QR y cobro de gimnasio) | Sí (básica) | Parcial / Web | **[Hecho]** ~MXN 799/mes | [membrix.mx](https://membrix.mx/) / [gymni.mx](https://gymni.mx/) (2026-11-23) *Proveedores* |
 | **Thanos / Sopvi** | México / Español | Baja (control básico de gimnasio/dojo) | Limitada | Escritorio básico | **[Hecho]** ~MXN 399/mes | [sopvi-thanos.com](https://sopvi-thanos.com/) (2026-11-23) *Proveedor* |
 | **Libreta + Excel + WhatsApp** | Manual / Español | Nula (todo se reconstruye a mano en cada examen) | No (mensajes sueltos en WhatsApp) | Talonario en papel | **[Hecho]** MXN 0/mes (alto costo en fugas de cobro) | Observación de mercado (2026-11-23) |
-| **Cupa Dojang (Propuesta)** | **México / Español MX** | **Alta (10.º Geup a Dan, exámenes con sinodal, equipo, torneos CUPA)** | **Sí (Android / iOS para padres)** | **Sí (Windows *offline-first* + ticket 58/80 mm y WhatsApp)** | **[Propuesta]** **MXN 499 a MXN 1,299/mes (IVA incl.)** | Diseño de producto CUPA (2026-11-23) |
+| **Mi Doyang by Cupa (Propuesta)** | **México / Español MX** | **Alta (10.º Geup a Dan, exámenes con sinodal, equipo, torneos CUPA)** | **Sí (Android / iOS para padres)** | **Sí (Windows *offline-first* + ticket 58/80 mm y WhatsApp)** | **[Propuesta]** **MXN 499 a MXN 1,299/mes (IVA incl.)** | Diseño de producto CUPA (2026-11-23) |
 
 ---
 
@@ -116,11 +116,11 @@
 
 ---
 
-### 2.4. Propuesta de precios sugeridos para Cupa Dojang (en MXN, IVA incluido)
+### 2.4. Propuesta de precios sugeridos para Mi Doyang by Cupa (en MXN, IVA incluido)
 
 **[Opinión / Recomendación comercial]** Para maximizar la adopción frente a Excel/libreta y competir con ventaja clara frente a Membrix/Gym&i (~MXN 799/mes), MatGoat (~MXN 800/mes) y BoxMagic (~MXN 999–1,499/mes), se propone un esquema de **precios transparentes en pesos mexicanos con IVA (16 %) ya incluido**, escalonado por el tamaño real de los dojangs en México y con descuento por pago anual (2 meses gratis).
 
-#### Tabla de planes mensuales y anuales — Cupa Dojang
+#### Tabla de planes mensuales y anuales — Mi Doyang by Cupa
 
 | Plan | Tamaño de academia (alumnos activos) | Precio mensual (MXN, IVA incluido) | Plan anual (10 meses = 12, IVA incluido) | Perfil de dojang e inclusiones clave |
 |---|---|---|---|---|
@@ -135,7 +135,7 @@ Para eliminar la principal barrera de entrada tecnológica (el maestro que tiene
 | Concepto opcional (Pago único) | Precio sugerido (MXN, IVA incluido) | Qué incluye |
 |---|---|---|
 | **1. Puesta en marcha y migración ("Llave en mano")** | **MXN $990** *(Gratis al contratar cualquier plan anual)* | Limpieza e importación de la base de datos actual desde Excel/listas en papel (alumnos, tutores, cintas actuales y adeudos), configuración de cuotas/recargos del dojang, personalización con el logotipo de la escuela y capacitación remota de 60 min para el maestro y recepción. |
-| **2. Paquete Hardware Recepción CUPA (Impresora térmica + puesta en marcha)** | **MXN $2,490** *(Con envío incluido en México)* | Impresora térmica de tickets de 58 mm o 80 mm (USB + Bluetooth) probada con Cupa Dojang en Windows y Android + 5 rollos de papel térmico + servicio completo de **"Puesta en marcha y migración"** + configuración remota lista para imprimir el primer recibo con el logo del dojang. |
+| **2. Paquete Hardware Recepción CUPA (Impresora térmica + puesta en marcha)** | **MXN $2,490** *(Con envío incluido en México)* | Impresora térmica de tickets de 58 mm o 80 mm (USB + Bluetooth) probada con Mi Doyang by Cupa en Windows y Android + 5 rollos de papel térmico + servicio completo de **"Puesta en marcha y migración"** + configuración remota lista para imprimir el primer recibo con el logo del dojang. |
 
 #### Justificación económica para el dueño del dojang (argumento de venta)
 - **[Estimación financiera]** La colegiatura mensual promedio en un dojang mexicano oscila entre **MXN $600 y MXN $1,200 por alumno**.
@@ -143,14 +143,14 @@ Para eliminar la principal barrera de entrada tecnológica (el maestro que tiene
 
 ---
 
-## 3. Implicaciones para el producto (Cupa Dojang)
+## 3. Implicaciones para el producto (Mi Doyang by Cupa)
 
 De los hallazgos anteriores se desprenden siete decisiones obligatorias de producto y arquitectura para `gestion-academias`:
 
 1. **Arquitectura *Offline-First* en Recepción (Windows) como diferenciador crítico:**
    - La aplicación de escritorio Windows debe almacenar localmente (SQLite/Drift o equivalente sincronizado con Supabase) el padrón de alumnos, tarifas, pagos en efectivo/transferencia y asistencias del día, permitiendo **cobrar e imprimir tickets térmicos de 58/80 mm sin internet** durante la hora pico (16:00–21:00 h) y sincronizar automáticamente al recuperar la conexión.
 2. **Modelo de datos centrado en "Familia / Tutor" además de "Alumno":**
-   - A diferencia de los sistemas de gimnasio donde cada socio es un adulto independiente, Cupa Dojang debe permitir que **un padre/madre/tutor sea titular de 1 o varios alumnos (hermanos)**, con estado de cuenta familiar unificado, descuentos por hermanos automatizados y una sola sesión en la app móvil (Android/iOS).
+   - A diferencia de los sistemas de gimnasio donde cada socio es un adulto independiente, Mi Doyang by Cupa debe permitir que **un padre/madre/tutor sea titular de 1 o varios alumnos (hermanos)**, con estado de cuenta familiar unificado, descuentos por hermanos automatizados y una sola sesión en la app móvil (Android/iOS).
 3. **Motor nativo de grados y exámenes de Taekwondo (10.º Geup → 1.º Geup → Poom/Dan):**
    - El sistema debe incluir de fábrica el catálogo configurable de cintas de Taekwondo (Blanca, Blanca Avanzada, Amarilla, Amarilla Avanzada, Verde, Verde Avanzada, Azul, Azul Avanzada, Roja, Roja/Negra, Poom 1.º–3.º y Dan 1.º–9.º), requisitos de asistencias mínimas por grado, generación de lista de convocados a examen, cobro de derecho de examen, hoja de evaluación para el **sinodal** y ascenso automático de cinta con historial perpetuo.
 4. **Flujo híbrido de cobros adaptado a México (Efectivo + SPEI + Comprobante en App y WhatsApp):**

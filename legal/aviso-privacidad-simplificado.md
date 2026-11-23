@@ -1,4 +1,4 @@
-# Aviso de Privacidad Simplificado · Cupa Dojang (Gestión de Academias TKD)
+# Aviso de Privacidad Simplificado · Mi Doyang by Cupa (Gestión de Academias TKD)
 
 > **Instrucciones de implementación en UI (Windows y Android):**
 > 1. Este aviso simplificado debe mostrarse de forma visible y legible directamente en la pantalla de registro del padre/tutor y en la pantalla de alta de un alumno menor de edad **antes** de enviar el formulario.
@@ -9,7 +9,7 @@
 
 ## 1. Aviso Simplificado en Pantalla de Registro del Padre/Tutor y Alta de Alumno Menor de Edad
 
-**Responsable de sus datos:** **`{Nombre_Comercial_Academia}`** (`{Razon_Social_o_Nombre_Titular_Academia}`), con domicilio en **`{Domicilio_Completo_Academia}`** (operando a través de la plataforma **Cupa Dojang** como encargada tecnológica).
+**Responsable de sus datos:** **`{Nombre_Comercial_Academia}`** (`{Razon_Social_o_Nombre_Titular_Academia}`), con domicilio en **`{Domicilio_Completo_Academia}`** (operando a través de la plataforma **Mi Doyang by Cupa** como encargada tecnológica).
 
 **Finalidades necesarias:** Trataremos sus datos personales de contacto (nombre, teléfono, correo y parentesco) y los datos de su hijo(a) o tutorado(a) menor de edad (nombre, fecha de nacimiento, sexo/rama deportiva, peso opcional para combate, asistencias e historial de cintas, exámenes y pagos de colegiatura) para gestionar su inscripción en la academia, asignarle grupo y categoría deportiva, llevar el control de su avance marcial, emitir comprobantes de pago y comunicarnos con usted ante cualquier emergencia. **La aplicación no solicita ni almacena números de tarjetas bancarias ni códigos CVV.**
 
@@ -63,9 +63,9 @@ Para inscribir al alumno **`{Nombre_del_Alumno}`** en **`{Nombre_del_Evento}`**,
 
 ## 3. Aviso Simplificado de CUPA para el Registro de Dueños/Administradores de Academias (B2B)
 
-> **Dónde se muestra:** Pantalla de creación de cuenta de una nueva Academia en **Cupa Dojang (Windows / Web)**.
+> **Dónde se muestra:** Pantalla de creación de cuenta de una nueva Academia en **Mi Doyang by Cupa (Windows / Web)**.
 
-**{Razón social o titular fiscal de CUPA}** (**CUPA / Cupa Dojang**) tratará sus datos personales de identificación, contacto comercial y facturación para crear y administrar la cuenta de su academia, gestionar su suscripción al software, emitir comprobantes fiscales (CFDI) y brindarle soporte técnico. Respecto de los datos personales de sus alumnos y padres de familia que usted registre en el sistema, **su Academia es la Responsable** y **CUPA actúa únicamente como Encargada** conforme a los Términos del Servicio. Consulte nuestro **[Aviso de Privacidad Integral de CUPA](`{URL_o_Ruta_App_Aviso_Integral_CUPA}`)**.
+**{Razón social o titular fiscal de CUPA}** (**CUPA / Mi Doyang by Cupa**) tratará sus datos personales de identificación, contacto comercial y facturación para crear y administrar la cuenta de su academia, gestionar su suscripción al software, emitir comprobantes fiscales (CFDI) y brindarle soporte técnico. Respecto de los datos personales de sus alumnos y padres de familia que usted registre en el sistema, **su Academia es la Responsable** y **CUPA actúa únicamente como Encargada** conforme a los Términos del Servicio. Consulte nuestro **[Aviso de Privacidad Integral de CUPA](`{URL_o_Ruta_App_Aviso_Integral_CUPA}`)**.
 
 ```text
 [ ] (Obligatorio) He leído y acepto el Aviso de Privacidad Integral de CUPA y los Términos y Condiciones del Servicio (que incluyen el Contrato de Encargo de Tratamiento de Datos Personales).

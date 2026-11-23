@@ -1,20 +1,18 @@
-# Decisiones · Cupa Dojang: Gestión de Academias TKD
+# Decisiones · Mi Doyang by Cupa (`gestion-academias`)
 
 Cada decisión arquitectónica y de producto queda registrada con fecha, contexto, opciones evaluadas, decisión recomendada y consecuencias. `"Pendiente"` indica que espera confirmación final de Carlos.
 
 ---
 
-## 2026-11-23 · D-01 · Nombre comercial y marca — **Recomendado: "Cupa Dojang: Gestión TKD"**
-- **Contexto:** El producto forma parte de la familia de software deportivo **CUPA** (junto con OSS CUPA y *Cupa Pocket: Marcador TKD*). Necesita un nombre que identifique inmediatamente al nicho de Taekwondo ("Dojang") y su función ("Gestión TKD"), respetando el límite estricto de **30 caracteres** en el título de Google Play Store y manteniendo coherencia en los identificadores de paquete (`com.ovrcupa.dojang.academias`).
-- **Opciones:**
-  1. **Cupa Dojang: Gestión TKD** (24 caracteres en tienda; nombre completo comercial: *Cupa Dojang: Gestión de Academias TKD*).
-  2. **Cupa Academias Taekwondo** (24 caracteres, más genérico, pierde el término identitario *Dojang*).
-  3. **Dojang Pro by Cupa** (18 caracteres, pero no incluye palabras clave de búsqueda como "Gestión" o "TKD" en el título).
-- **Decisión:** **"Cupa Dojang: Gestión TKD"** como título en tiendas (24 caracteres) y **"Cupa Dojang: Gestión de Academias TKD"** en documentación comercial, web e instalador de Windows. Identificador de aplicación Android/iOS: `com.ovrcupa.dojang.academias`.
+## 2026-11-23 · D-01 · Nombre comercial, marca y repositorio — **Decidido por el dueño: "Mi Doyang by Cupa"**
+- **Contexto:** El producto forma parte de la familia de software deportivo **CUPA** (regla de marca: todos los productos llevan `"Cupa"` o `"by Cupa"`). Necesita un nombre cercano en español para maestros, alumnos y padres de familia ("Mi Doyang", escrito con *y* como se pronuncia en México) y que quepa dentro del límite de **30 caracteres** en el título de Google Play Store.
+- **Decisión del dueño (23 nov):**
+  - **Nombre comercial:** **"Mi Doyang by Cupa"** (17 caracteres; en Play Store permite usar `"Mi Doyang by Cupa"` o `"Mi Doyang by Cupa: Taekwondo"` con 28 caracteres).
+  - **Identificador de aplicación Android/iOS (`applicationId`):** `com.ovrcupa.midoyang` (siguiendo el prefijo `com.ovrcupa.*` de CUPA).
+  - **Repositorio oficial en GitHub:** `https://github.com/OVRCupa/Mi-Doyang-by-Cupa.git`.
 - **Consecuencias:**
-  - Cumple la regla de marca CUPA y cabe holgadamente en los 30 caracteres de Google Play y Apple App Store.
-  - Posiciona las palabras clave "Dojang", "Gestión" y "TKD" en el título, dejando "Taekwondo", "Academia", "Escuela", "Cobros" y "Cintas" para la descripción corta.
-  - Se debe verificar y registrar la marca **"Cupa Dojang"** ante el IMPI (Clases 9 y 42) antes del lanzamiento comercial.
+  - Cumple la regla de marca `"by Cupa"`, es fácil de pronunciar y recordar por padres de familia y sabonims en México, y cabe holgadamente en los 30 caracteres de Google Play y Apple App Store.
+  - Se debe verificar y registrar la marca **"Mi Doyang"** / **"Mi Doyang by Cupa"** ante el IMPI (Clases 9 y 42) antes del lanzamiento comercial.
 
 ---
 
@@ -99,7 +97,7 @@ Cada decisión arquitectónica y de producto queda registrada con fecha, context
   1. **Personalización configurable en base de datos por academia (White-label ligero)** dentro de la misma app publicada por CUPA: logo/escudo de la academia, color primario con validación automática de contraste WCAG AA, catálogo propio de cintas/grados (colores hexadecimales primario y de punta/franja, orden, clases mínimas y meses requeridos), reglas de recargo por mora, descuentos por hermanos y pie de ticket personalizado.
   2. **Rigidez total** (cintas y reglas fijas en código para todas las academias).
   3. **White-label pesado** (compilar y publicar una app distinta en Google Play por cada academia).
-- **Decisión:** **Opción 1 — Personalización por academia en base de datos dentro de una sola app oficial en tiendas (`Cupa Dojang: Gestión TKD`).**
+- **Decisión:** **Opción 1 — Personalización por academia en base de datos dentro de una sola app oficial en tiendas (`Mi Doyang by Cupa`).**
 - **Consecuencias:**
   - Un solo binario en Play Store y Windows que mantener y actualizar, pero cuando el padre de familia o el recepcionista inicia sesión, ve el escudo de su academia, sus colores en encabezados y tickets, y el sistema de cintas exacto de su escuela.
   - Al crear una academia nueva, un asistente de configuración inicial (*Onboarding*) ofrece la **plantilla estándar WT México** (10.º Geup Blanca a 1.er Dan Negra, con o sin puntas) para que el dueño quede operando en menos de 5 minutos y solo ajuste lo que desee.
@@ -167,12 +165,12 @@ Cada decisión arquitectónica y de producto queda registrada con fecha, context
 ---
 
 ## 2026-11-23 · D-12 · Integración futura con el ecosistema CUPA sin acoplar código — **Decidido: Intercambio por archivo estándar JSON/CSV de inscripciones a torneos**
-- **Contexto:** `CLAUDE.md` establece una regla inquebrantable: *"Los proyectos son independientes: ninguno importa código, datos ni configuración de otro"*. Sin embargo, comercialmente es una ventaja enorme que una academia que usa **Cupa Dojang** para inscribir y cobrar a sus 30 competidores de un torneo interclub pueda exportar esa lista lista para importarse en el software de torneos de CUPA o en **Cupa Pocket: Marcador TKD**, sin volver a capturar nombres, pesos, edades y cintas a mano.
+- **Contexto:** `CLAUDE.md` establece una regla inquebrantable: *"Los proyectos son independientes: ninguno importa código, datos ni configuración de otro"*. Sin embargo, comercialmente es una ventaja enorme que una academia que usa **Mi Doyang by Cupa** para inscribir y cobrar a sus 30 competidores de un torneo interclub pueda exportar esa lista lista para importarse en el software de torneos de CUPA o en **Cupa Pocket: Marcador TKD**, sin volver a capturar nombres, pesos, edades y cintas a mano.
 - **Opciones:**
-  1. **Desacoplamiento total mediante formato de exportación estándar (`cupa-torneo-roster-v1.json` y `.csv`)**: el módulo de Torneos de *Cupa Dojang* exporta un archivo limpio con los alumnos inscritos y pagados al torneo (`nombre_display`, `club`, `rama`, `fecha_nacimiento`/`edad`, `peso_kg`, `grado_cinta`, `modalidad`: Kyorugi / Poomsae).
+  1. **Desacoplamiento total mediante formato de exportación estándar (`cupa-torneo-roster-v1.json` y `.csv`)**: el módulo de Torneos de *Mi Doyang by Cupa* exporta un archivo limpio con los alumnos inscritos y pagados al torneo (`nombre_display`, `club`, `rama`, `fecha_nacimiento`/`edad`, `peso_kg`, `grado_cinta`, `modalidad`: Kyorugi / Poomsae).
   2. **Compartir la misma base de datos de Supabase o importar paquetes Dart entre carpetas de proyecto** (prohibido por `CLAUDE.md`).
 - **Decisión:** **Opción 1 — Exportación de lista de competidores en CSV y JSON estándar auto-contenido, manteniendo repositorios, bases de datos y despliegues 100% independientes.**
 - **Consecuencias:**
   - Cumple al 100% la regla de independencia de proyectos de `CLAUDE.md`.
   - El archivo CSV sirve de inmediato para **cualquier** torneo externo (incluso si el organizador usa Excel), mientras que el JSON/CSV permite carga instantánea en las herramientas del ecosistema CUPA.
-  - Crea un puente comercial natural (venta cruzada entre *Cupa Dojang* y *Cupa Pocket*) sin deuda técnica ni acoplamiento.
+  - Crea un puente comercial natural (venta cruzada entre *Mi Doyang by Cupa* y *Cupa Pocket*) sin deuda técnica ni acoplamiento.

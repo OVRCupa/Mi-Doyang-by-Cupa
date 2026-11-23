@@ -1,4 +1,4 @@
-# Diseño · Cupa Dojang: Gestión de Academias TKD
+# Diseño · Mi Doyang by Cupa
 
 Sigue la skill `diseno-con-criterio`. Versión 0.1 · 23 nov 2026.
 
@@ -85,7 +85,7 @@ Densidad alta para escritorio, navegación lateral fija, barra de búsqueda glob
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────┐
-│ CUPA DOJANG · Academia Tigres TKD         [● En línea · Caja 1]   [F3 Buscar alumno...]  │
+│ MI DOYANG BY CUPA · Academia Tigres TKD         [● En línea · Caja 1]   [F3 Buscar alumno...]  │
 ├──────────────┬───────────────────────────────────────────┬───────────────────────────────┤
 │ DOJANG       │ FAMILIA: HERNÁNDEZ LÓPEZ (2 hermanos)     │ TICKET DE PAGO · VISTA PREVIA │
 │              │ Tutor: Laura López · Tel: 55 4123 8910    │ ┌───────────────────────────┐ │

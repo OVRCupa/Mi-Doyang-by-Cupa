@@ -1,4 +1,4 @@
-# Cambios · Cupa Dojang (`gestion-academias`)
+# Cambios · Mi Doyang by Cupa (`gestion-academias`)
 
 ## [Sin publicar]
 - **Bases del proyecto creadas** con la skill `nuevo-proyecto`:
