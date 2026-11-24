@@ -1536,9 +1536,9 @@ class _BarraNavegacionHorizontalMovil extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: i == indiceActivo
-                          ? ColoresDoyang.azulChung
+                          ? Theme.of(context).colorScheme.primary
                           : ColoresDoyang.transparente,
-                      borderRadius: const BorderRadius.all(Radius.circular(6)),
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
                     ),
                     child: Center(
                       child: Text(
@@ -1618,10 +1618,10 @@ class _BarraNavegacionLateral extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         color: activo
-                            ? ColoresDoyang.azulChung
+                            ? Theme.of(context).colorScheme.primary
                             : ColoresDoyang.transparente,
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(6)),
+                            const BorderRadius.all(Radius.circular(12)),
                       ),
                       child: compacto
                           ? Column(

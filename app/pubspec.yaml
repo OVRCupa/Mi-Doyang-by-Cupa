@@ -24,6 +24,7 @@ flutter:
 
   assets:
     - assets/fuentes/OFL.txt
+    - assets/imagenes/
 
   fonts:
     - family: Oswald

@@ -4,6 +4,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:mi_doyang_core/mi_doyang_core.dart';
 
 import '../estado/controlador_doyang.dart';
+import '../theme/logo_mi_doyang.dart';
 import '../theme/tema_doyang.dart';
 import 'pantalla_inicio_doyang.dart';
 import 'vista_instructor_android.dart';
@@ -71,24 +72,21 @@ class PantallaPrincipalDoyang extends ConsumerWidget {
                     children: <Widget>[
                       Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
-                        spacing: 10,
+                        spacing: 12,
                         runSpacing: 6,
                         children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: const BoxDecoration(
-                              color: ColoresDoyang.selloHong,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(4)),
-                            ),
-                            child: Text(
-                              'MI DOYANG BY CUPA',
-                              style: TipografiaDoyang.metadato(
-                                color: ColoresDoyang.papelDobok,
-                                peso: FontWeight.w700,
+                          InkWell(
+                            onTap: ctrl.irAInicio,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(8)),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 4,
+                                vertical: 2,
+                              ),
+                              child: LogoMiDoyang(
+                                compacto: true,
+                                sobreOscuro: true,
                               ),
                             ),
                           ),

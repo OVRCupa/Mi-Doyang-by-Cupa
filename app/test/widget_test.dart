@@ -35,8 +35,8 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
-      expect(find.text('MI DOYANG BY CUPA'), findsOneWidget);
-      expect(find.text('¿Cómo deseas entrar hoy?'), findsOneWidget);
+      expect(find.text('By Cupa'), findsOneWidget);
+      expect(find.text('Iniciar sesión en tu espacio'), findsOneWidget);
 
       await tester.scrollUntilVisible(
         find.byKey(const Key('inicio-entrar-recepcion')),
@@ -59,7 +59,7 @@ void main() {
       await tester.pumpWidget(_crearAppPrueba());
       await tester.pumpAndSettle();
 
-      expect(find.text('MI DOYANG BY CUPA'), findsOneWidget);
+      expect(find.text('By Cupa'), findsOneWidget);
       expect(find.byType(BeltWidget), findsWidgets);
       expect(find.byType(TicketTermicoWidget), findsOneWidget);
 

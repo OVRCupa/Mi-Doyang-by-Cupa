@@ -590,18 +590,25 @@ class _BotonDestinoInferior extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color =
-        activo ? ColoresDoyang.azulChung : ColoresDoyang.tintaGrafito;
+    final primario = Theme.of(context).colorScheme.primary;
+    final color = activo ? primario : ColoresDoyang.tintaGrafito;
     return Expanded(
       child: InkWell(
         key: llave,
         onTap: alTocar,
-        borderRadius: const BorderRadius.all(Radius.circular(6)),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
         child: Container(
           constraints: const BoxConstraints(
             minHeight: DimensionesDoyang.objetivoTactilMinimo,
           ),
-          padding: const EdgeInsets.symmetric(vertical: 6),
+          margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+          decoration: BoxDecoration(
+            color: activo
+                ? primario.withValues(alpha: 0.12)
+                : ColoresDoyang.transparente,
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
