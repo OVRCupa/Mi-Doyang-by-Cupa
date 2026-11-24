@@ -696,12 +696,12 @@ class ControladorDoyang extends Notifier<EstadoAppDoyang> {
 
   Future<void> exportarTicketImprimible(TicketPago ticket) async {
     try {
-      final archivo = await ExportadorComprobantesLocal.guardarComprobanteHtml(
+      final ruta = await ExportadorComprobantesLocal.guardarComprobanteHtml(
         ticket: ticket,
         academia: state.motor.academia,
       );
       _persistir(
-        exito: 'Comprobante HTML/PDF guardado: ${archivo.path}',
+        exito: 'Comprobante HTML/PDF guardado: $ruta',
       );
     } on Object catch (e) {
       _persistir(error: 'No se pudo exportar el comprobante: $e');
@@ -710,14 +710,14 @@ class ControladorDoyang extends Notifier<EstadoAppDoyang> {
 
   Future<void> exportarTicketEscPos(TicketPago ticket) async {
     try {
-      final archivo = await ExportadorComprobantesLocal.guardarComprobanteEscPos(
+      final ruta = await ExportadorComprobantesLocal.guardarComprobanteEscPos(
         ticket: ticket,
         academia: state.motor.academia,
         anchoColumnas: state.anchoTicketColumnas,
       );
       _persistir(
         exito:
-            'Archivo térmico ESC/POS (${state.anchoTicketColumnas} col) listo: ${archivo.path}',
+            'Archivo térmico ESC/POS (${state.anchoTicketColumnas} col) listo: $ruta',
       );
     } on Object catch (e) {
       _persistir(error: 'No se pudo generar el ticket ESC/POS: $e');

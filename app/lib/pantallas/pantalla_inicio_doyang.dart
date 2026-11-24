@@ -59,77 +59,80 @@ class PantallaInicioDoyang extends ConsumerWidget {
                           end: Alignment.bottomCenter,
                           colors: <Color>[
                             ColoresDoyang.tintaCinturonNegro
-                                .withValues(alpha: 0.78),
-                            primario.withValues(alpha: 0.55),
+                                .withValues(alpha: 0.52),
+                            primario.withValues(alpha: 0.32),
                             ColoresDoyang.tintaCinturonNegro
-                                .withValues(alpha: 0.90),
+                                .withValues(alpha: 0.78),
                           ],
                         ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 28, 20, 26),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        const LogoMiDoyang(compacto: false, sobreOscuro: true),
-                        const SizedBox(height: 14),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 14,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: ColoresDoyang.superficieTatami
-                                .withValues(alpha: 0.16),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20)),
-                            border: Border.all(
-                              color: ColoresDoyang.superficieTatami
-                                  .withValues(alpha: 0.30),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 32, 20, 28),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          const LogoMiDoyang(compacto: false, sobreOscuro: true),
+                          const SizedBox(height: 14),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 6,
+                            ),
+                            decoration: BoxDecoration(
+                              color: ColoresDoyang.tintaCinturonNegro
+                                  .withValues(alpha: 0.45),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
+                              border: Border.all(
+                                color: ColoresDoyang.superficieTatami
+                                    .withValues(alpha: 0.35),
+                              ),
+                            ),
+                            child: Text(
+                              academia.nombre,
+                              textAlign: TextAlign.center,
+                              style: TipografiaDoyang.cuerpo(
+                                color: ColoresDoyang.superficieTatami,
+                                peso: FontWeight.w700,
+                              ),
                             ),
                           ),
-                          child: Text(
-                            academia.nombre,
-                            textAlign: TextAlign.center,
-                            style: TipografiaDoyang.cuerpo(
-                              color: ColoresDoyang.superficieTatami,
-                              peso: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                        if (academia.lema.trim().isNotEmpty) ...<Widget>[
-                          const SizedBox(height: 6),
-                          Text(
-                            academia.lema,
-                            textAlign: TextAlign.center,
-                            style: TipografiaDoyang.celda(
-                              color: ColoresDoyang.papelDobok,
-                            ),
-                          ),
-                        ],
-                        const SizedBox(height: 18),
-                        Wrap(
-                          alignment: WrapAlignment.center,
-                          spacing: 10,
-                          runSpacing: 8,
-                          children: <Widget>[
-                            _PillResumenInicio(
-                              etiqueta: 'Alumnos activos',
-                              valor: '$alumnosActivos',
-                            ),
-                            _PillResumenInicio(
-                              etiqueta: 'Tickets emitidos',
-                              valor: '$ticketsVigentes',
-                            ),
-                            _PillResumenInicio(
-                              etiqueta: 'Cobrado hoy',
-                              valor: formatearMxn(corte.totalCobradoCentavos),
+                          if (academia.lema.trim().isNotEmpty) ...<Widget>[
+                            const SizedBox(height: 6),
+                            Text(
+                              academia.lema,
+                              textAlign: TextAlign.center,
+                              style: TipografiaDoyang.celda(
+                                color: ColoresDoyang.papelDobok,
+                              ),
                             ),
                           ],
-                        ),
-                      ],
+                          const SizedBox(height: 18),
+                          Wrap(
+                            alignment: WrapAlignment.center,
+                            spacing: 10,
+                            runSpacing: 8,
+                            children: <Widget>[
+                              _PillResumenInicio(
+                                etiqueta: 'Alumnos activos',
+                                valor: '$alumnosActivos',
+                              ),
+                              _PillResumenInicio(
+                                etiqueta: 'Tickets emitidos',
+                                valor: '$ticketsVigentes',
+                              ),
+                              _PillResumenInicio(
+                                etiqueta: 'Cobrado hoy',
+                                valor: formatearMxn(corte.totalCobradoCentavos),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -154,45 +157,71 @@ class PantallaInicioDoyang extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 14),
-                  _TarjetaAccesoInicio(
-                    llave: const Key('inicio-entrar-recepcion'),
-                    icono: Icons.point_of_sale_rounded,
-                    colorAcento: primario,
-                    titulo: 'Recepción y Administración',
-                    descripcion:
-                        'Cobra mensualidades, emite tickets con QR, gestiona alumnos, exámenes Kup/Poom/Dan, equipo y torneos.',
-                    etiquetaBoton: 'Iniciar en Recepción',
-                    alTocar: () {
-                      ctrl.cambiarRolActivo(RolUsuario.dueno);
-                      ctrl.salirDeInicio();
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  _TarjetaAccesoInicio(
-                    llave: const Key('inicio-entrar-padres'),
-                    icono: Icons.family_restroom_rounded,
-                    colorAcento: ColoresDoyang.jadeAprobado,
-                    titulo: 'Portal de Padres de Familia',
-                    descripcion:
-                        'Visualiza a tus hijos, avance de cintas Kup/Poom/Dan, tickets de comprobante de pago, equipo y torneos.',
-                    etiquetaBoton: 'Iniciar como Padre / Tutor',
-                    alTocar: () {
-                      ctrl.cambiarRolActivo(RolUsuario.tutor);
-                      ctrl.salirDeInicio();
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  _TarjetaAccesoInicio(
-                    llave: const Key('inicio-entrar-instructor'),
-                    icono: Icons.sports_martial_arts_rounded,
-                    colorAcento: ColoresDoyang.selloHong,
-                    titulo: 'Instructor en Tatami',
-                    descripcion:
-                        'Pasa lista por código QR o toque rápido y consulta alertas médicas autorizadas antes de clase.',
-                    etiquetaBoton: 'Iniciar como Instructor',
-                    alTocar: () {
-                      ctrl.cambiarRolActivo(RolUsuario.instructor);
-                      ctrl.salirDeInicio();
+                  LayoutBuilder(
+                    builder: (context, c) {
+                      final tarjetas = <Widget>[
+                        _TarjetaAccesoInicio(
+                          llave: const Key('inicio-entrar-recepcion'),
+                          icono: Icons.point_of_sale_rounded,
+                          colorAcento: primario,
+                          titulo: 'Recepción y Administración',
+                          descripcion:
+                              'Cobra mensualidades, emite tickets con QR, gestiona alumnos, exámenes Kup/Poom/Dan, equipo y torneos.',
+                          etiquetaBoton: 'Iniciar en Recepción',
+                          alTocar: () {
+                            ctrl.cambiarRolActivo(RolUsuario.dueno);
+                            ctrl.salirDeInicio();
+                          },
+                        ),
+                        _TarjetaAccesoInicio(
+                          llave: const Key('inicio-entrar-padres'),
+                          icono: Icons.family_restroom_rounded,
+                          colorAcento: ColoresDoyang.jadeAprobado,
+                          titulo: 'Portal de Padres de Familia',
+                          descripcion:
+                              'Visualiza a tus hijos, avance de cintas Kup/Poom/Dan, tickets de comprobante de pago, equipo y torneos.',
+                          etiquetaBoton: 'Iniciar como Padre / Tutor',
+                          alTocar: () {
+                            ctrl.cambiarRolActivo(RolUsuario.tutor);
+                            ctrl.salirDeInicio();
+                          },
+                        ),
+                        _TarjetaAccesoInicio(
+                          llave: const Key('inicio-entrar-instructor'),
+                          icono: Icons.sports_martial_arts_rounded,
+                          colorAcento: ColoresDoyang.selloHong,
+                          titulo: 'Instructor en Tatami',
+                          descripcion:
+                              'Pasa lista por código QR o toque rápido y consulta alertas médicas autorizadas antes de clase.',
+                          etiquetaBoton: 'Iniciar como Instructor',
+                          alTocar: () {
+                            ctrl.cambiarRolActivo(RolUsuario.instructor);
+                            ctrl.salirDeInicio();
+                          },
+                        ),
+                      ];
+                      if (c.maxWidth >= 920) {
+                        return Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(child: tarjetas[0]),
+                            const SizedBox(width: 12),
+                            Expanded(child: tarjetas[1]),
+                            const SizedBox(width: 12),
+                            Expanded(child: tarjetas[2]),
+                          ],
+                        );
+                      }
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          tarjetas[0],
+                          const SizedBox(height: 12),
+                          tarjetas[1],
+                          const SizedBox(height: 12),
+                          tarjetas[2],
+                        ],
+                      );
                     },
                   ),
                   const SizedBox(height: 16),
