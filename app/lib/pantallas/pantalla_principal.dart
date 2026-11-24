@@ -53,7 +53,7 @@ class PantallaPrincipalDoyang extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                // Barra superior institucional estilo CUPA con color editable
+                // Barra superior institucional: Logo arriba a la izquierda y nombre de academia centrado
                 Container(
                   decoration: BoxDecoration(
                     gradient: ColoresDoyang.gradienteEncabezado(
@@ -61,59 +61,68 @@ class PantallaPrincipalDoyang extends ConsumerWidget {
                     ),
                   ),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
+                    horizontal: 14,
                     vertical: 8,
                   ),
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceBetween,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    spacing: 12,
-                    runSpacing: 8,
-                    children: <Widget>[
-                      Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        spacing: 12,
-                        runSpacing: 6,
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final logoWidget = InkWell(
+                        onTap: ctrl.irAInicio,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8)),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 4,
+                            vertical: 2,
+                          ),
+                          child: LogoMiDoyang(
+                            compacto: true,
+                            sobreOscuro: true,
+                          ),
+                        ),
+                      );
+
+                      final centroAcademia = Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          InkWell(
-                            onTap: ctrl.irAInicio,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(8)),
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 4,
-                                vertical: 2,
-                              ),
-                              child: LogoMiDoyang(
-                                compacto: true,
-                                sobreOscuro: true,
-                              ),
+                          Text(
+                            estado.motor.academia.nombre,
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TipografiaDoyang.tituloSeccion(
+                              color: ColoresDoyang.superficieTatami,
                             ),
                           ),
                           Text(
-                            '${estado.motor.academia.nombre} · ${pendientesOutbox == 0 ? "En línea" : "Local ($pendientesOutbox en cola)"}',
+                            pendientesOutbox == 0
+                                ? 'En línea · Caja sincronizada'
+                                : 'Modo local · $pendientesOutbox en cola',
+                            textAlign: TextAlign.center,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TipografiaDoyang.celda(
+                            style: TipografiaDoyang.metadato(
                               color: ColoresDoyang.papelDobok,
-                              peso: FontWeight.w600,
                             ),
                           ),
                         ],
-                      ),
-                      Wrap(
+                      );
+
+                      final chipsNavegacion = Wrap(
+                        alignment: WrapAlignment.end,
                         spacing: 6,
                         runSpacing: 6,
                         children: <Widget>[
                           _ChipSelectorVista(
                             llave: const Key('selector-vista-inicio'),
-                            etiqueta: 'Inicio',
+                            etiqueta: 'Dashboard',
                             activo: false,
                             alTocar: ctrl.irAInicio,
                           ),
                           _ChipSelectorVista(
                             llave: const Key('selector-vista-recepcion'),
-                            etiqueta: 'Recepción (Windows)',
+                            etiqueta: 'Recepción',
                             activo: estado.rolActivo == RolUsuario.dueno ||
                                 estado.rolActivo == RolUsuario.recepcion,
                             alTocar: () =>
@@ -121,21 +130,59 @@ class PantallaPrincipalDoyang extends ConsumerWidget {
                           ),
                           _ChipSelectorVista(
                             llave: const Key('selector-vista-padre'),
-                            etiqueta: 'Portal Padre (Android)',
+                            etiqueta: 'Padres',
                             activo: estado.rolActivo == RolUsuario.tutor,
                             alTocar: () =>
                                 ctrl.cambiarRolActivo(RolUsuario.tutor),
                           ),
                           _ChipSelectorVista(
                             llave: const Key('selector-vista-instructor'),
-                            etiqueta: 'Instructor (Android)',
+                            etiqueta: 'Instructor',
                             activo: estado.rolActivo == RolUsuario.instructor,
                             alTocar: () =>
                                 ctrl.cambiarRolActivo(RolUsuario.instructor),
                           ),
                         ],
-                      ),
-                    ],
+                      );
+
+                      if (constraints.maxWidth >= 980) {
+                        return Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: logoWidget,
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12),
+                              child: centroAcademia,
+                            ),
+                            Expanded(
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: chipsNavegacion,
+                              ),
+                            ),
+                          ],
+                        );
+                      }
+
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: logoWidget,
+                          ),
+                          const SizedBox(height: 4),
+                          centroAcademia,
+                          const SizedBox(height: 8),
+                          Center(child: chipsNavegacion),
+                        ],
+                      );
+                    },
                   ),
                 ),
                 // Avisos de retroalimentación inmediata

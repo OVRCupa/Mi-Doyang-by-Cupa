@@ -1,6 +1,11 @@
 # Cambios · Mi Doyang by Cupa (`gestion-academias`)
 
 ## [Sin publicar]
+- **Dashboard Ejecutivo de Inicio, Control de Gastos Operativos (`GastoAcademia`) y Encabezado Institucional:**
+  - Encabezado institucional en toda la aplicación con el logo oficial **`MI DOYANG / BY CUPA`** en la esquina superior izquierda y el **nombre de la academia centrado** en el encabezado.
+  - Regeneración de los 3 botones principales en **pequeños módulos principales compactos** de acceso inmediato (*Recepción y Caja*, *Portal de Padres*, *Instructor en Tatami*).
+  - Nuevo modelo de dominio `GastoAcademia` y `CategoriaGasto` en `core/lib/src/gastos.dart` integrado a `MotorDoyang` (`totalGastosVigentesCentavos`, `saldoPorCobrarTotalCentavos`, `balanceNetoCentavos`, bitácora y `outbox`).
+  - Dashboard operativo de inicio con los 4 indicadores clave del dojang y 4 paneles en tiempo real: **Alumnos en la academia** (con `BeltWidget`, asistencias y adeudos), **Historial de ingresos**, **Sección interactiva de gastos** (`+ Registrar gasto`) y **Eventos próximos** (exámenes de cinta Kup/Poom/Dan y torneos).
 - **Identidad Corporativa CUPA (`marca/` + `LogoMiDoyang`), Pantalla de Inicio y Progresión de 14 Cintas Kup:**
   - Kit oficial de marca en `marca/` (`mi-doyang-fondo-blanco.svg/.png`, `mi-doyang-fondo-oscuro.svg/.png`, `mi-doyang-transparente.svg/.png`, `mi-doyang-transparente-texto-claro.svg/.png`, `icono.svg`, `icono-play-512.png`) y widget vectorial exacto `LogoMiDoyang` (`app/lib/theme/logo_mi_doyang.dart`) respetando el formato oficial de **LOGOS CUPA** (`OVR CUPA` / `OSS CUPA` / `CUPA Taekwondo` / `OSS CUPA Pocket`): tipografía geométrica **Inter Bold** en mayúsculas, `"O"` como círculo sólido partido verticalmente azul/rojo sin anillo exterior, doble línea horizontal corporativa azul/roja de extremo a extremo y subtítulo centrado **`B Y   C U P A`**.
   - Pantalla de Inicio con fondo fotográfico de academia de Taekwondo, colores editables por academia (con verificación WCAG 2.1 AA) y tarjetas de acceso rápido por perfil.

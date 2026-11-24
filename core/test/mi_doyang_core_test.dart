@@ -839,6 +839,51 @@ void main() {
         restaurado.colaOutbox.every((e) => e.sincronizado),
         isTrue,
       );
+      expect(restaurado.gastos.length, equals(original.gastos.length));
     });
+
+    test(
+      'Dashboard financiero registra gastos operativos, calcula balance neto, bloquea roles sin permiso y rechaza PAN',
+      () {
+        final motor = MotorDoyang.demo();
+        // Demo inicial: $800 cobrados, $500 en 2 gastos ($320 + $180) -> balance neto +$300, por cobrar $1,520
+        expect(motor.totalGastosVigentesCentavos, equals(50000));
+        expect(motor.balanceNetoCentavos, equals(30000));
+        expect(motor.saldoPorCobrarTotalCentavos, equals(152000));
+
+        final gastoNuevo = motor.registrarGasto(
+          concepto: 'Honorarios sabonim auxiliar',
+          categoria: CategoriaGasto.nominaInstructores,
+          montoCentavos: 25000,
+          metodoPago: MetodoPago.transferencia,
+          referenciaOpcional: 'SPEI-NOM-901',
+        );
+        expect(gastoNuevo.montoCentavos, equals(25000));
+        expect(motor.totalGastosVigentesCentavos, equals(75000));
+        expect(motor.balanceNetoCentavos, equals(5000));
+
+        // RBAC: tutor e instructor no pueden registrar gastos
+        expect(
+          () => motor.registrarGasto(
+            concepto: 'Intento no autorizado',
+            categoria: CategoriaGasto.otros,
+            montoCentavos: 1000,
+            rolActor: RolUsuario.tutor,
+          ),
+          throwsStateError,
+        );
+
+        // Seguridad anti-PAN en referencia de gasto
+        expect(
+          () => motor.registrarGasto(
+            concepto: 'Pago con tarjeta',
+            categoria: CategoriaGasto.serviciosBasicos,
+            montoCentavos: 10000,
+            referenciaOpcional: '4152 3133 4444 5555',
+          ),
+          throwsA(isA<ViolacionPrivacidadException>()),
+        );
+      },
+    );
   });
 }

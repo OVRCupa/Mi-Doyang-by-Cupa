@@ -6,6 +6,7 @@ import 'caja_tickets.dart';
 import 'equipo.dart';
 import 'examenes.dart';
 import 'familia_alumnos.dart';
+import 'gastos.dart';
 import 'torneos.dart';
 
 /// Evento de mutación en la cola local (`outbox`) para sincronización
@@ -148,6 +149,7 @@ class MotorDoyang {
   final List<Asistencia> asistencias;
   final List<CargoCuenta> cargos;
   final List<TicketPago> tickets;
+  final List<GastoAcademia> gastos;
   final List<ConvocatoriaExamen> convocatoriasExamen;
   final List<InscripcionExamen> inscripcionesExamen;
   final List<RegistroHistorialGrado> historialGrados;
@@ -168,6 +170,7 @@ class MotorDoyang {
     List<Asistencia>? asistencias,
     List<CargoCuenta>? cargos,
     List<TicketPago>? tickets,
+    List<GastoAcademia>? gastos,
     List<ConvocatoriaExamen>? convocatoriasExamen,
     List<InscripcionExamen>? inscripcionesExamen,
     List<RegistroHistorialGrado>? historialGrados,
@@ -187,6 +190,7 @@ class MotorDoyang {
             List<Asistencia>.from(asistencias ?? const <Asistencia>[]),
         cargos = List<CargoCuenta>.from(cargos ?? const <CargoCuenta>[]),
         tickets = List<TicketPago>.from(tickets ?? const <TicketPago>[]),
+        gastos = List<GastoAcademia>.from(gastos ?? const <GastoAcademia>[]),
         convocatoriasExamen = List<ConvocatoriaExamen>.from(
           convocatoriasExamen ?? const <ConvocatoriaExamen>[],
         ),
@@ -1025,6 +1029,76 @@ class MotorDoyang {
       ticketsCanceladosCount: cancelados,
       ingresosPorTipoCentavos: porTipo,
     );
+  }
+
+  /// Total de egresos operativos vigentes registrados en la academia.
+  int get totalGastosVigentesCentavos => gastos
+      .where((g) => !g.cancelado)
+      .fold<int>(0, (acc, g) => acc + g.montoCentavos);
+
+  /// Total de cuentas por cobrar (cargos pendientes o con abono parcial).
+  int get saldoPorCobrarTotalCentavos => cargos
+      .where(
+        (c) =>
+            (c.estado == EstadoCargo.pendiente ||
+                c.estado == EstadoCargo.abonadoParcial) &&
+            c.saldoCentavos > 0,
+      )
+      .fold<int>(0, (acc, c) => acc + c.saldoCentavos);
+
+  /// Balance neto disponible en caja (`Ingresos vigentes − Gastos vigentes`).
+  int get balanceNetoCentavos =>
+      calcularCorteCaja().totalCobradoCentavos - totalGastosVigentesCentavos;
+
+  /// Registra un gasto operativo del dojang validando rol (`dueno` o `recepcion`),
+  /// montos positivos en centavos enteros y ausencia de PAN/CVV en la referencia.
+  GastoAcademia registrarGasto({
+    required String concepto,
+    required CategoriaGasto categoria,
+    required int montoCentavos,
+    MetodoPago metodoPago = MetodoPago.efectivo,
+    String fechaIso = '2026-11-24',
+    String? referenciaOpcional,
+    String actorUsuarioId = 'dueno-1',
+    RolUsuario rolActor = RolUsuario.dueno,
+  }) {
+    if (rolActor != RolUsuario.dueno && rolActor != RolUsuario.recepcion) {
+      throw StateError(
+        'Solo los roles Dueño o Recepción pueden registrar gastos de la academia.',
+      );
+    }
+    final gasto = GastoAcademia(
+      id: _siguienteId('gasto'),
+      academiaId: academia.id,
+      concepto: concepto.trim(),
+      categoria: categoria,
+      montoCentavos: montoCentavos,
+      metodoPago: metodoPago,
+      fechaIso: fechaIso.trim(),
+      referenciaOpcional:
+          (referenciaOpcional != null && referenciaOpcional.trim().isNotEmpty)
+              ? referenciaOpcional.trim()
+              : null,
+      registradoPorUsuarioId: actorUsuarioId,
+    );
+    gastos.add(gasto);
+    _registrarBitacora(
+      actorUsuarioId: actorUsuarioId,
+      rolActor: rolActor,
+      accion: 'REGISTRO_GASTO_OPERATIVO',
+      entidad: 'gastos_academia',
+      registroId: gasto.id,
+      detalle:
+          '${gasto.categoria.etiqueta}: ${gasto.concepto} (${formatearMxn(gasto.montoCentavos)})',
+      fechaIso: '${gasto.fechaIso}T19:00:00Z',
+    );
+    _encolarOutbox(
+      tipoOperacion: 'REGISTRAR_GASTO',
+      entidadId: gasto.id,
+      payload: gasto.toJson(),
+      fechaIso: '${gasto.fechaIso}T19:00:00Z',
+    );
+    return gasto;
   }
 
   /// Marca como sincronizados los eventos pendientes en [colaOutbox] y los
@@ -2307,6 +2381,27 @@ class MotorDoyang {
       ],
       cargos: <CargoCuenta>[cargoMateo, cargoSofia, cargoDiego],
       tickets: <TicketPago>[ticketEmitido],
+      gastos: <GastoAcademia>[
+        GastoAcademia(
+          id: 'gasto-demo-1',
+          academiaId: academia.id,
+          concepto: 'Compra de cintas Kup y tablas de rompimiento',
+          categoria: CategoriaGasto.equipoYMaterial,
+          montoCentavos: 32000,
+          metodoPago: MetodoPago.transferencia,
+          fechaIso: '2026-11-18',
+          referenciaOpcional: 'PROV-TKD-402',
+        ),
+        GastoAcademia(
+          id: 'gasto-demo-2',
+          academiaId: academia.id,
+          concepto: 'Insumos de limpieza de tatami y garrafones',
+          categoria: CategoriaGasto.mantenimientoTatami,
+          montoCentavos: 18000,
+          metodoPago: MetodoPago.efectivo,
+          fechaIso: '2026-11-22',
+        ),
+      ],
       convocatoriasExamen: <ConvocatoriaExamen>[convocatoriaInvierno],
       historialGrados: <RegistroHistorialGrado>[
         RegistroHistorialGrado(
@@ -2330,6 +2425,7 @@ class MotorDoyang {
         'asistencias': asistencias.map((a) => a.toJson()).toList(),
         'cargos': cargos.map((c) => c.toJson()).toList(),
         'tickets': tickets.map((t) => t.toJson()).toList(),
+        'gastos': gastos.map((g) => g.toJson()).toList(),
         'convocatoriasExamen':
             convocatoriasExamen.map((c) => c.toJson()).toList(),
         'inscripcionesExamen':
@@ -2384,6 +2480,12 @@ class MotorDoyang {
           ?.map(
             (item) =>
                 TicketPago.fromJson(Map<String, dynamic>.from(item as Map)),
+          )
+          .toList(),
+      gastos: (json['gastos'] as List<dynamic>?)
+          ?.map(
+            (item) =>
+                GastoAcademia.fromJson(Map<String, dynamic>.from(item as Map)),
           )
           .toList(),
       convocatoriasExamen: (json['convocatoriasExamen'] as List<dynamic>?)

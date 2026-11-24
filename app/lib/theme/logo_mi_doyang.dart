@@ -18,11 +18,13 @@ import 'tema_doyang.dart';
 class LogoMiDoyang extends StatelessWidget {
   final bool compacto;
   final bool sobreOscuro;
+  final double? altoPersonalizado;
 
   const LogoMiDoyang({
     super.key,
     this.compacto = false,
     this.sobreOscuro = true,
+    this.altoPersonalizado,
   });
 
   static const double _viewBoxW = 1784.65;
@@ -30,7 +32,7 @@ class LogoMiDoyang extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final alto = compacto ? 38.0 : 96.0;
+    final alto = altoPersonalizado ?? (compacto ? 38.0 : 52.0);
     final ancho = alto * (_viewBoxW / _viewBoxH);
 
     return Semantics(
@@ -38,7 +40,7 @@ class LogoMiDoyang extends StatelessWidget {
       image: true,
       child: FittedBox(
         fit: BoxFit.scaleDown,
-        alignment: compacto ? Alignment.centerLeft : Alignment.center,
+        alignment: Alignment.centerLeft,
         child: SizedBox(
           width: ancho,
           height: alto,

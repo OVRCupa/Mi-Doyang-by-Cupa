@@ -11,6 +11,7 @@ export 'src/equipo.dart';
 export 'src/escpos_ticket.dart';
 export 'src/examenes.dart';
 export 'src/familia_alumnos.dart';
+export 'src/gastos.dart';
 export 'src/motor_doyang.dart';
 export 'src/reglas_color.dart';
 export 'src/torneos.dart';

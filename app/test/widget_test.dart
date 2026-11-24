@@ -26,7 +26,52 @@ Widget _crearAppPrueba({
 
 void main() {
   testWidgets(
-    'Pantalla de Inicio amigable (360x640 @ 130%) cambia color editable y entra a Recepción',
+    'Dashboard de Inicio (1366x840 y 360x640 @ 130%) muestra alumnos, ingresos, gastos interactivos, eventos y 3 módulos compactos',
+    (WidgetTester tester) async {
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+
+      // 1. Escritorio 1366x840: logo a la izquierda, academia centrada, 4 paneles y alta de gasto
+      await tester.binding.setSurfaceSize(const Size(1366, 840));
+      await tester.pumpWidget(
+        _crearAppPrueba(escalaTexto: 1.0, mostrarInicio: true),
+      );
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(find.byType(LogoMiDoyang), findsOneWidget);
+      expect(find.bySemanticsLabel('Mi Doyang By Cupa'), findsOneWidget);
+      expect(find.text('Módulos principales'), findsOneWidget);
+      expect(find.byKey(const Key('panel-dashboard-alumnos')), findsOneWidget);
+      expect(find.byKey(const Key('panel-dashboard-ingresos')), findsOneWidget);
+
+      // Desplazar hasta Sección de Gastos y registrar un egreso operativo real
+      await tester.scrollUntilVisible(
+        find.byKey(const Key('btn-toggle-nuevo-gasto')),
+        220,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('panel-dashboard-eventos')), findsOneWidget);
+
+      await tester.tap(find.byKey(const Key('btn-toggle-nuevo-gasto')));
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byKey(const Key('input-gasto-concepto')),
+        'Pago internet fibra dojang',
+      );
+      await tester.enterText(
+        find.byKey(const Key('input-gasto-monto')),
+        '550.00',
+      );
+      await tester.ensureVisible(find.byKey(const Key('btn-guardar-gasto')));
+      await tester.tap(find.byKey(const Key('btn-guardar-gasto')));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(find.text('Pago internet fibra dojang'), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'Dashboard de Inicio en móvil estrecho (360x640 @ 130%) sin desbordes y entra a Recepción desde módulo compacto',
     (WidgetTester tester) async {
       await tester.binding.setSurfaceSize(const Size(360, 640));
       addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -36,17 +81,11 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
-      expect(find.byType(LogoMiDoyang), findsOneWidget);
-      expect(find.bySemanticsLabel('Mi Doyang By Cupa'), findsOneWidget);
-      expect(find.text('Iniciar sesión en tu espacio'), findsOneWidget);
 
-      await tester.scrollUntilVisible(
-        find.byKey(const Key('inicio-entrar-recepcion')),
-        200,
-        scrollable: find.byType(Scrollable).first,
-      );
+      final btnRecepcion = find.byKey(const Key('inicio-entrar-recepcion'));
+      await tester.ensureVisible(btnRecepcion);
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(const Key('inicio-entrar-recepcion')));
+      await tester.tap(btnRecepcion);
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
       expect(find.byKey(const Key('selector-vista-inicio')), findsOneWidget);

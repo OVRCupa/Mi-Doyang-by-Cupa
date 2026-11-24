@@ -225,6 +225,17 @@ class ControladorDoyang extends Notifier<EstadoAppDoyang> {
     );
   }
 
+  void abrirRecepcionSeccion(int seccionIndex, {String? ticketId}) {
+    state = state.copyWith(
+      mostrarInicio: false,
+      rolActivo: RolUsuario.dueno,
+      seccionRecepcionIndex: seccionIndex,
+      ticketSeleccionadoId: ticketId ?? state.ticketSeleccionadoId,
+      limpiarAvisoExito: true,
+      limpiarAvisoError: true,
+    );
+  }
+
   void actualizarColorPrimarioRapido(String colorHex) {
     try {
       final actual = state.motor.academia;
@@ -520,6 +531,34 @@ class ControladorDoyang extends Notifier<EstadoAppDoyang> {
     _persistir(
       exito: 'Sincronización completada: $n evento(s) enviados a la nube.',
     );
+  }
+
+  bool registrarNuevoGasto({
+    required String concepto,
+    required CategoriaGasto categoria,
+    required int montoCentavos,
+    MetodoPago metodoPago = MetodoPago.efectivo,
+    String? referenciaOpcional,
+    String fechaIso = '2026-11-24',
+  }) {
+    try {
+      final gasto = state.motor.registrarGasto(
+        concepto: concepto,
+        categoria: categoria,
+        montoCentavos: montoCentavos,
+        metodoPago: metodoPago,
+        referenciaOpcional: referenciaOpcional,
+        fechaIso: fechaIso,
+      );
+      _persistir(
+        exito:
+            'Gasto registrado: ${gasto.concepto} (${formatearMxn(gasto.montoCentavos)}).',
+      );
+      return true;
+    } on Object catch (e) {
+      _persistir(error: e.toString());
+      return false;
+    }
   }
 
   // ── M4 · Grados y Exámenes Internos ──────────────────────────────────────
