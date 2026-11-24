@@ -1,6 +1,10 @@
 # Cambios · Mi Doyang by Cupa (`gestion-academias`)
 
 ## [Sin publicar]
+- **Identidad Corporativa CUPA (`marca/` + `LogoMiDoyang`), Pantalla de Inicio y Progresión de 14 Cintas Kup:**
+  - Kit oficial de marca en `marca/` (`mi-doyang-fondo-blanco.svg/.png`, `mi-doyang-fondo-oscuro.svg/.png`, `mi-doyang-transparente.svg/.png`, `mi-doyang-transparente-texto-claro.svg/.png`, `icono.svg`, `icono-play-512.png`) y widget vectorial exacto `LogoMiDoyang` (`app/lib/theme/logo_mi_doyang.dart`) respetando el formato oficial de **LOGOS CUPA** (`OVR CUPA` / `OSS CUPA` / `CUPA Taekwondo` / `OSS CUPA Pocket`): tipografía geométrica **Inter Bold** en mayúsculas, `"O"` como círculo sólido partido verticalmente azul/rojo sin anillo exterior, doble línea horizontal corporativa azul/roja de extremo a extremo y subtítulo centrado **`B Y   C U P A`**.
+  - Pantalla de Inicio con fondo fotográfico de academia de Taekwondo, colores editables por academia (con verificación WCAG 2.1 AA) y tarjetas de acceso rápido por perfil.
+  - Terminología oficial **Kup** y progresión de 14 cintas (`Blanca` a `Negra 1er Poom / 1er Dan`), dibujando las cintas avanzadas con franja horizontal al centro del color de la siguiente cinta (`BeltWidget`).
 - **Backend Multi-Tenant Supabase + Tickets Térmicos ESC/POS y Comprobante Digital HTML/PDF:**
   - Migración SQL completa de las 20 tablas multi-tenant con Row Level Security (RLS) por `academia_id` y rol (`dueno`, `recepcion`, `instructor`, `tutor`) más RPC idempotente `procesar_pago_offline` (`supabase/migrations/0001_esquema_inicial.sql` y `supabase/README.md`).
   - Generador binario **ESC/POS** para impresoras térmicas de 58 mm y 80 mm con código QR nativo (`GS ( k`) y corte de papel (`core/lib/src/escpos_ticket.dart`), más comprobante digital HTML autocontenido listo para imprimir a PDF o compartir por WhatsApp.

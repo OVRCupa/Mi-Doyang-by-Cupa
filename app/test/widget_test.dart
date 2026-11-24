@@ -5,6 +5,7 @@ import 'package:mi_doyang_app/estado/almacen_doyang.dart';
 import 'package:mi_doyang_app/estado/controlador_doyang.dart';
 import 'package:mi_doyang_app/main.dart';
 import 'package:mi_doyang_app/theme/belt_widget.dart';
+import 'package:mi_doyang_app/theme/logo_mi_doyang.dart';
 import 'package:mi_doyang_app/theme/ticket_termico_widget.dart';
 
 Widget _crearAppPrueba({
@@ -35,7 +36,8 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
-      expect(find.text('By Cupa'), findsOneWidget);
+      expect(find.byType(LogoMiDoyang), findsOneWidget);
+      expect(find.bySemanticsLabel('Mi Doyang By Cupa'), findsOneWidget);
       expect(find.text('Iniciar sesión en tu espacio'), findsOneWidget);
 
       await tester.scrollUntilVisible(
@@ -59,7 +61,7 @@ void main() {
       await tester.pumpWidget(_crearAppPrueba());
       await tester.pumpAndSettle();
 
-      expect(find.text('By Cupa'), findsOneWidget);
+      expect(find.byType(LogoMiDoyang), findsOneWidget);
       expect(find.byType(BeltWidget), findsWidgets);
       expect(find.byType(TicketTermicoWidget), findsOneWidget);
 

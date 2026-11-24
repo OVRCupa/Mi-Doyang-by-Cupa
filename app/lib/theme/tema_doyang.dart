@@ -33,6 +33,14 @@ abstract final class ColoresDoyang {
   static const sombraSuave = Color(0x140B1B33);
   static const transparente = Color(0x00000000);
 
+  // Tokens oficiales de marca corporativa CUPA (LOGOS CUPA: OVR CUPA / OSS CUPA)
+  static const logoTextoClaro = Color(0xFFF2F2F2);
+  static const logoTextoOscuro = Color(0xFF111111);
+  static const logoAzulSobreClaro = Color(0xFF031D38);
+  static const logoRojoSobreClaro = Color(0xFFB20602);
+  static const logoAzulSobreOscuro = Color(0xFF3B6DB4);
+  static const logoRojoSobreOscuro = Color(0xFFDF2B28);
+
   /// Presets de colores amigables que cada academia puede elegir con 1 toque.
   static const presetsColorAcademia = <(String, String)>[
     ('CUPA Azul', '#2563EB'),
