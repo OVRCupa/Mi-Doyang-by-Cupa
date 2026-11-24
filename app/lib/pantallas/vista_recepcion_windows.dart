@@ -558,6 +558,21 @@ class _VistaRecepcionWindowsState extends ConsumerState<VistaRecepcionWindows> {
               anchoColumnas: estado.anchoTicketColumnas,
             ),
             const SizedBox(height: 10),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: <Widget>[
+                OutlinedButton(
+                  onPressed: () => ctrl.exportarTicketEscPos(ticketActual),
+                  child: const Text('Generar térmico ESC/POS'),
+                ),
+                OutlinedButton(
+                  onPressed: () => ctrl.exportarTicketImprimible(ticketActual),
+                  child: const Text('Guardar HTML / PDF'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
             if (!ticketActual.cancelado)
               OutlinedButton(
                 onPressed: () => ctrl.cancelarTicketConReverso(

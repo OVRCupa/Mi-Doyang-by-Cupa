@@ -1,6 +1,11 @@
 # Cambios · Mi Doyang by Cupa (`gestion-academias`)
 
 ## [Sin publicar]
+- **Backend Multi-Tenant Supabase + Tickets Térmicos ESC/POS y Comprobante Digital HTML/PDF:**
+  - Migración SQL completa de las 20 tablas multi-tenant con Row Level Security (RLS) por `academia_id` y rol (`dueno`, `recepcion`, `instructor`, `tutor`) más RPC idempotente `procesar_pago_offline` (`supabase/migrations/0001_esquema_inicial.sql` y `supabase/README.md`).
+  - Generador binario **ESC/POS** para impresoras térmicas de 58 mm y 80 mm con código QR nativo (`GS ( k`) y corte de papel (`core/lib/src/escpos_ticket.dart`), más comprobante digital HTML autocontenido listo para imprimir a PDF o compartir por WhatsApp.
+  - Servicio `SincronizadorSupabase` y exportador local en `app/lib/servicios/servicio_tickets_y_sync.dart` conectados a Caja en Recepción.
+  - Compilación y publicación del APK `mi-doyang-by-cupa-0.1.0.apk` en Google Drive.
 - **App Flutter Multiplataforma (`app/`, Windows + Android) y Puerta de Calidad aprobada:**
   - Tema propio (`app/lib/theme/tema_doyang.dart`) con paleta *Papel Dobok / Chung / Hong*, validación WCAG 2.1 AA en personalización y fuente **Oswald (OFL)** empaquetada offline.
   - Componentes propios de Taekwondo: `BeltWidget` (faja `5:1` con costura, punta reservada en 20% derecho y cinta Poom rojinegra) y `TicketTermicoWidget` (80 mm / 58 mm con cifras tabulares, leyenda `(IMPORTES EN MXN)`, sello `PAGADO`/`CANCELADO` y QR verificable).

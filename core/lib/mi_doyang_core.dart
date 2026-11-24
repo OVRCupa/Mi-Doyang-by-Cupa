@@ -8,6 +8,7 @@ library;
 export 'src/academia.dart';
 export 'src/caja_tickets.dart';
 export 'src/equipo.dart';
+export 'src/escpos_ticket.dart';
 export 'src/examenes.dart';
 export 'src/familia_alumnos.dart';
 export 'src/motor_doyang.dart';

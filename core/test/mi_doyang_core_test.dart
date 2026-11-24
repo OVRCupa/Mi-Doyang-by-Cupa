@@ -388,6 +388,29 @@ void main() {
         );
       }
       expect(termico80, contains('TOTAL PAGADO'));
+
+      // Generador binario ESC/POS (58 mm y 80 mm) con comando QR nativo y corte
+      final bytes80 = generarBytesEscPosTicket(
+        ticket: ticketAbono,
+        academia: motor.academia,
+        anchoColumnas: 48,
+      );
+      expect(bytes80.length, greaterThan(100));
+      expect(bytes80.take(2).toList(), equals(<int>[0x1B, 0x40])); // ESC @
+      expect(
+        bytes80.sublist(bytes80.length - 4),
+        equals(<int>[0x1D, 0x56, 0x42, 0x00]), // GS V 66 0 (corte papel)
+      );
+
+      // Comprobante digital HTML imprimible a PDF / WhatsApp
+      final html = generarComprobanteHtmlImprimible(
+        ticket: ticketAbono,
+        academia: motor.academia,
+      );
+      expect(html, contains('<!DOCTYPE html>'));
+      expect(html, contains(ticketAbono.folio));
+      expect(html, contains('PAGADO'));
+      expect(html, contains(ticketAbono.codigoVerificacionQr));
     });
 
     test('rechaza números de tarjeta PAN (13 a 19 dígitos) o CVV en referenciaPagoOpcional', () {

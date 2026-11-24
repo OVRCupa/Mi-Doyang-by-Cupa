@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mi_doyang_core/mi_doyang_core.dart';
 
+import '../servicios/servicio_tickets_y_sync.dart';
 import 'almacen_doyang.dart';
 
 final almacenDoyangProvider = Provider<AlmacenDoyang>(
@@ -653,6 +654,44 @@ class ControladorDoyang extends Notifier<EstadoAppDoyang> {
       textoExportado: csv,
     );
     return csv;
+  }
+
+  Future<void> exportarTicketImprimible(TicketPago ticket) async {
+    try {
+      final archivo = await ExportadorComprobantesLocal.guardarComprobanteHtml(
+        ticket: ticket,
+        academia: state.motor.academia,
+      );
+      _persistir(
+        exito: 'Comprobante HTML/PDF guardado: ${archivo.path}',
+      );
+    } on Object catch (e) {
+      _persistir(error: 'No se pudo exportar el comprobante: $e');
+    }
+  }
+
+  Future<void> exportarTicketEscPos(TicketPago ticket) async {
+    try {
+      final archivo = await ExportadorComprobantesLocal.guardarComprobanteEscPos(
+        ticket: ticket,
+        academia: state.motor.academia,
+        anchoColumnas: state.anchoTicketColumnas,
+      );
+      _persistir(
+        exito:
+            'Archivo térmico ESC/POS (${state.anchoTicketColumnas} col) listo: ${archivo.path}',
+      );
+    } on Object catch (e) {
+      _persistir(error: 'No se pudo generar el ticket ESC/POS: $e');
+    }
+  }
+
+  Future<void> sincronizarConSupabase() async {
+    final sincronizador = SincronizadorSupabase(
+      config: ConfigSupabase.desdeEntorno(),
+    );
+    final res = await sincronizador.sincronizarOutbox(state.motor);
+    _persistir(exito: res.mensaje);
   }
 
   // ── Derechos ARCO (LFPDPPP 2025) ─────────────────────────────────────────
