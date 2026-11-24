@@ -90,12 +90,18 @@ void main() {
     });
 
     test(
-      'EscalafonGrados.taekwondoWtMexico incluye 10.º Geup a 1.º Poom y 1.º Dan y es editable por el dueño',
+      'EscalafonGrados.taekwondoWtMexico incluye 10.º Kup a 1.º Poom y 1.º Dan y es editable por el dueño',
       () {
         final motor = MotorDoyang.demo();
-        expect(motor.grados.length, equals(12));
-        expect(motor.grados.first.codigo, equals('10.º Geup'));
+        expect(motor.grados.length, equals(14));
+        expect(motor.grados.first.codigo, equals('10.º Kup'));
         expect(motor.grados.first.nombre, equals('Cinta Blanca'));
+
+        // Verificar cinta avanzada con franja horizontal central de la siguiente cinta
+        final blancaAv = motor.obtenerGradoPorId('grado-10-kup-av');
+        final naranja = motor.obtenerGradoPorId('grado-9-kup');
+        expect(blancaAv.esAvanzada, isTrue);
+        expect(blancaAv.colorFranjaCentralHex, equals(naranja.colorBaseHex));
 
         final poom = motor.obtenerGradoPorId('grado-1-poom');
         expect(poom.esPoom, isTrue);
@@ -107,11 +113,11 @@ void main() {
         // Solo el rol dueño puede editar grados
         final nuevoGrado = GradoCinta(
           id: 'grado-2-dan',
-          orden: 13,
+          orden: 15,
           codigo: '2.º Dan',
           nombre: 'Cinta Negra 2.º Dan',
           colorBaseHex: '#14181F',
-          colorPuntaHex: '#E0A800',
+          colorPuntaHex: '#D4AF37',
           mesesMinimos: 12,
           asistenciasMinimas: 96,
           costoExamenCentavos: 320000,
@@ -126,7 +132,7 @@ void main() {
         );
 
         motor.guardarGradoCinta(nuevoGrado, rolActor: RolUsuario.dueno);
-        expect(motor.grados.length, equals(13));
+        expect(motor.grados.length, equals(15));
         expect(
           motor.obtenerSiguienteGrado('grado-1-dan')?.id,
           equals('grado-2-dan'),
@@ -164,7 +170,7 @@ void main() {
         apellidos: 'Pérez',
         fechaNacimientoIso: '2016-05-10',
         sexoRama: SexoRama.varonil,
-        gradoActualId: 'grado-10-geup',
+        gradoActualId: 'grado-10-kup',
         fechaUltimoGradoIso: '2026-11-01',
         asistenciasEnGradoActual: 0,
         horarioGrupo: 'Infantil 17:00',
@@ -211,7 +217,7 @@ void main() {
           apellidos: 'Gómez',
           fechaNacimientoIso: '2015-03-15',
           sexoRama: SexoRama.femenil,
-          gradoActualId: 'grado-10-geup',
+          gradoActualId: 'grado-10-kup',
           fechaUltimoGradoIso: '2026-11-01',
           asistenciasEnGradoActual: 0,
           horarioGrupo: 'Infantil 17:00',
@@ -289,7 +295,7 @@ void main() {
           apellidos: 'Hernández López',
           fechaNacimientoIso: '2020-01-20',
           sexoRama: SexoRama.varonil,
-          gradoActualId: 'grado-10-geup',
+          gradoActualId: 'grado-10-kup',
           fechaUltimoGradoIso: '2026-10-01',
           asistenciasEnGradoActual: 8,
           horarioGrupo: 'Pre-TKD 16:00',
@@ -501,7 +507,7 @@ void main() {
     test('evalúa elegibilidad cruzando asistencias, meses y pagos al corriente', () {
       final motor = MotorDoyang.demo();
 
-      // Mateo (6.º Geup -> 5.º Geup) cumple asistencias (25 >= 24), meses (>= 3) y pagos al corriente
+      // Mateo (6.º Kup -> 5.º Kup) cumple asistencias (25 >= 24), meses (>= 3) y pagos al corriente
       final dictamenMateo = motor.evaluarElegibilidadExamen(
         'alumno-mateo',
         fechaReferencia: DateTime.utc(2026, 11, 23),
@@ -510,10 +516,10 @@ void main() {
       expect(dictamenMateo.cumpleAsistencias, isTrue);
       expect(dictamenMateo.cumpleTiempoMeses, isTrue);
       expect(dictamenMateo.cumplePagosAlCorriente, isTrue);
-      expect(dictamenMateo.siguienteGrado?.id, equals('grado-5-geup'));
+      expect(dictamenMateo.siguienteGrado?.id, equals('grado-5-kup'));
       expect(dictamenMateo.motivos, isEmpty);
 
-      // Sofía (8.º Geup -> 7.º Geup) tiene 18/22 asistencias, 2/3 meses y mensualidad pendiente
+      // Sofía (8.º Kup -> 7.º Kup) tiene 18/22 asistencias, 2/3 meses y mensualidad pendiente
       final dictamenSofia = motor.evaluarElegibilidadExamen(
         'alumno-sofia',
         fechaReferencia: DateTime.utc(2026, 11, 23),
@@ -535,8 +541,8 @@ void main() {
           alumnoId: 'alumno-mateo',
           consentimientoTutorAceptado: true,
         );
-        expect(inscripcion.gradoActualId, equals('grado-6-geup'));
-        expect(inscripcion.gradoAspiradoId, equals('grado-5-geup'));
+        expect(inscripcion.gradoActualId, equals('grado-6-kup'));
+        expect(inscripcion.gradoAspiradoId, equals('grado-5-kup'));
 
         // Si intenta evaluar antes de pagar el derecho a examen, lo bloquea
         final evaluacionAprobatoria = EvaluacionExamen(
@@ -574,13 +580,13 @@ void main() {
         );
 
         final mateoPromovido = motor.obtenerAlumnoPorId('alumno-mateo');
-        expect(mateoPromovido.gradoActualId, equals('grado-5-geup'));
+        expect(mateoPromovido.gradoActualId, equals('grado-5-kup'));
         expect(mateoPromovido.asistenciasEnGradoActual, equals(0));
         expect(mateoPromovido.fechaUltimoGradoIso, equals('2026-12-12'));
         expect(
           motor.historialGrados.any(
             (h) =>
-                h.alumnoId == 'alumno-mateo' && h.gradoId == 'grado-5-geup',
+                h.alumnoId == 'alumno-mateo' && h.gradoId == 'grado-5-kup',
           ),
           isTrue,
         );

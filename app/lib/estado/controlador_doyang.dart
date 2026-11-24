@@ -10,6 +10,10 @@ final almacenDoyangProvider = Provider<AlmacenDoyang>(
   (ref) => AlmacenArchivoDoyang(),
 );
 
+/// En la app real siempre arranca en la Pantalla de Inicio amigable.
+/// Las pruebas que evalúan directamente una vista pueden sobreescribirlo a `false`.
+final iniciarEnPantallaInicioProvider = Provider<bool>((ref) => true);
+
 final controladorDoyangProvider =
     NotifierProvider<ControladorDoyang, EstadoAppDoyang>(
   ControladorDoyang.new,
@@ -21,6 +25,7 @@ final controladorDoyangProvider =
 /// 3. App Móvil Android — Instructor / Sabonim en Tatami (`instructor`)
 class EstadoAppDoyang {
   final MotorDoyang motor;
+  final bool mostrarInicio;
   final RolUsuario rolActivo;
   final int seccionRecepcionIndex;
   final int pestanaPadreIndex;
@@ -37,6 +42,7 @@ class EstadoAppDoyang {
 
   const EstadoAppDoyang({
     required this.motor,
+    this.mostrarInicio = true,
     required this.rolActivo,
     required this.seccionRecepcionIndex,
     required this.pestanaPadreIndex,
@@ -87,6 +93,7 @@ class EstadoAppDoyang {
 
   EstadoAppDoyang copyWith({
     MotorDoyang? motor,
+    bool? mostrarInicio,
     RolUsuario? rolActivo,
     int? seccionRecepcionIndex,
     int? pestanaPadreIndex,
@@ -105,6 +112,7 @@ class EstadoAppDoyang {
   }) {
     return EstadoAppDoyang(
       motor: motor ?? this.motor,
+      mostrarInicio: mostrarInicio ?? this.mostrarInicio,
       rolActivo: rolActivo ?? this.rolActivo,
       seccionRecepcionIndex:
           seccionRecepcionIndex ?? this.seccionRecepcionIndex,
@@ -131,9 +139,11 @@ class ControladorDoyang extends Notifier<EstadoAppDoyang> {
   @override
   EstadoAppDoyang build() {
     final motor = MotorDoyang.demo();
+    final iniciarEnInicio = ref.watch(iniciarEnPantallaInicioProvider);
     unawaited(cargarDesdeAlmacen());
     return EstadoAppDoyang(
       motor: motor,
+      mostrarInicio: iniciarEnInicio,
       rolActivo: RolUsuario.dueno,
       seccionRecepcionIndex: 0,
       pestanaPadreIndex: 0,
@@ -198,6 +208,34 @@ class ControladorDoyang extends Notifier<EstadoAppDoyang> {
   }
 
   // ── Navegación y selectores de vista ────────────────────────────────────
+
+  void irAInicio() {
+    state = state.copyWith(
+      mostrarInicio: true,
+      limpiarAvisoExito: true,
+      limpiarAvisoError: true,
+    );
+  }
+
+  void salirDeInicio() {
+    state = state.copyWith(
+      mostrarInicio: false,
+      limpiarAvisoExito: true,
+      limpiarAvisoError: true,
+    );
+  }
+
+  void actualizarColorPrimarioRapido(String colorHex) {
+    try {
+      final actual = state.motor.academia;
+      state.motor.actualizarAcademia(
+        actual.copyWith(colorPrimarioHex: colorHex),
+      );
+      _persistir(exito: 'Color institucional actualizado.');
+    } on Object catch (e) {
+      _persistir(error: e.toString());
+    }
+  }
 
   void cambiarRolActivo(RolUsuario nuevoRol) {
     state = state.copyWith(

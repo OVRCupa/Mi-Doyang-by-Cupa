@@ -7,10 +7,14 @@ import 'package:mi_doyang_app/main.dart';
 import 'package:mi_doyang_app/theme/belt_widget.dart';
 import 'package:mi_doyang_app/theme/ticket_termico_widget.dart';
 
-Widget _crearAppPrueba({double escalaTexto = 1.0}) {
+Widget _crearAppPrueba({
+  double escalaTexto = 1.0,
+  bool mostrarInicio = false,
+}) {
   return ProviderScope(
     overrides: [
       almacenDoyangProvider.overrideWithValue(AlmacenMemoriaDoyang()),
+      iniciarEnPantallaInicioProvider.overrideWithValue(mostrarInicio),
     ],
     child: MediaQuery(
       data: MediaQueryData(textScaler: TextScaler.linear(escalaTexto)),
@@ -20,6 +24,32 @@ Widget _crearAppPrueba({double escalaTexto = 1.0}) {
 }
 
 void main() {
+  testWidgets(
+    'Pantalla de Inicio amigable (360x640 @ 130%) cambia color editable y entra a Recepción',
+    (WidgetTester tester) async {
+      await tester.binding.setSurfaceSize(const Size(360, 640));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+
+      await tester.pumpWidget(
+        _crearAppPrueba(escalaTexto: 1.3, mostrarInicio: true),
+      );
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(find.text('MI DOYANG BY CUPA'), findsOneWidget);
+      expect(find.text('¿Cómo deseas entrar hoy?'), findsOneWidget);
+
+      await tester.scrollUntilVisible(
+        find.byKey(const Key('inicio-entrar-recepcion')),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('inicio-entrar-recepcion')));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(find.byKey(const Key('selector-vista-inicio')), findsOneWidget);
+    },
+  );
   testWidgets(
     'Escritorio Windows (1280x720 y 1366x768 con texto al 130%) renderiza las 6 secciones sin desbordes',
     (WidgetTester tester) async {
@@ -151,7 +181,7 @@ void main() {
       await tester.tap(find.byKey(const Key('nav-recepcion-2')));
       await tester.pumpAndSettle();
 
-      // 1. Inscribir a Mateo (elegible en 6.º Geup) al examen
+      // 1. Inscribir a Mateo (elegible en 6.º Kup) al examen
       await tester.tap(
         find.byKey(const Key('btn-inscribir-examen-alumno-mateo')),
       );
@@ -161,20 +191,20 @@ void main() {
       await tester.tap(find.byKey(const Key('btn-pagar-examen-alumno-mateo')));
       await tester.pumpAndSettle();
 
-      // 3. Aprobar el examen y promover cinta automáticamente (6.º Geup -> 5.º Geup)
+      // 3. Aprobar el examen y promover cinta automáticamente (6.º Kup -> 5.º Kup)
       await tester.tap(
         find.byKey(const Key('btn-aprobar-examen-alumno-mateo')),
       );
       await tester.pumpAndSettle();
 
-      // 4. Cambiar al Portal del Padre y verificar que Mateo ya tiene 5.º Geup (Cinta Verde Punta Azul)
+      // 4. Cambiar al Portal del Padre y verificar que Mateo ya tiene 5.º Kup (Cinta Verde Punta Azul)
       await tester.tap(find.byKey(const Key('selector-vista-padre')));
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('nav-padre-inicio')));
       await tester.pumpAndSettle();
 
       expect(
-        find.textContaining('5.º GEUP · CINTA VERDE PUNTA AZUL'),
+        find.textContaining('5.º KUP · CINTA VERDE AVANZADA'),
         findsOneWidget,
       );
       expect(find.textContaining('Asistencias: 0 de'), findsOneWidget);

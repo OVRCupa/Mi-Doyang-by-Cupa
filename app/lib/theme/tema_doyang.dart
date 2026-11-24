@@ -1,56 +1,90 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:mi_doyang_core/mi_doyang_core.dart';
 
-/// Tokens oficiales de color de **Mi Doyang by Cupa** (`docs/diseno.md` §4.1).
+/// Tokens oficiales de color de **Mi Doyang by Cupa**, alineados al estilo
+/// amigable de **CUPA Scanner** y **CUPA Taekwondo** (azul marino + azul
+/// brillante + rojo marca + colores editables por academia).
 ///
 /// Regla de arquitectura: ningún archivo fuera de `lib/theme/` puede usar
 /// constructores crudos de color ni paletas por defecto de Flutter.
 abstract final class ColoresDoyang {
-  static const papelDobok = Color(0xFFF7F5F0);
-  static const superficieTatami = Color(0xFFFFFFFF);
-  static const esqueletoCarga = Color(0xFFEAE6DD);
-  static const bordePiedra = Color(0xFFD6D1C7);
-  static const bordeActivo = Color(0xFF5A6270);
-  static const tintaCinturonNegro = Color(0xFF14181F);
-  static const tintaGrafito = Color(0xFF4A5260);
-  static const azulChung = Color(0xFF1644AD);
-  static const fondoAzulSuave = Color(0xFFE8EEF9);
-  static const selloHong = Color(0xFFB82924);
-  static const fondoHongSuave = Color(0xFFFDECEA);
-  static const jadeAprobado = Color(0xFF146C43);
-  static const fondoJadeSuave = Color(0xFFE7F4EE);
-  static const ambarTatami = Color(0xFF8A5300);
-  static const fondoAmbarSuave = Color(0xFFFFF4DB);
-  static const doradoDan = Color(0xFFE0A800);
-  static const bordeCintaBlanca = Color(0xFF7A766E);
-  static const sombraSuave = Color(0x1414181F);
+  // Paleta base amigable estilo CUPA Taekwondo / CUPA Scanner (Light)
+  static const papelDobok = Color(0xFFF1F5FB); // Cupa.Surface
+  static const superficieTatami = Color(0xFFFFFFFF); // Cupa.Card
+  static const superficieAlterna = Color(0xFFEEF2F8); // Cupa.SurfaceAlt
+  static const esqueletoCarga = Color(0xFFE3EAF5);
+  static const bordePiedra = Color(0xFFDCE4F0); // Cupa.Border
+  static const bordeActivo = Color(0xFF2563EB); // Cupa.Blue
+  static const tintaCinturonNegro = Color(0xFF0B1B33); // Cupa.NavyDeep
+  static const azulMarinoMedio = Color(0xFF12305E); // Cupa.NavyMid
+  static const tintaPrincipal = Color(0xFF16202B); // Cupa.Ink
+  static const tintaGrafito = Color(0xFF5B6672); // Cupa.InkMuted
+  static const azulChung = Color(0xFF2563EB); // Cupa.Blue
+  static const azulBrillante = Color(0xFF3B82F6); // Cupa.BlueLight
+  static const fondoAzulSuave = Color(0xFFE6EEF8); // Cupa.BlueBg
+  static const selloHong = Color(0xFFBC2220); // Cupa.Red
+  static const fondoHongSuave = Color(0xFFFBEAE9); // Cupa.DangerBg
+  static const jadeAprobado = Color(0xFF177A43); // Cupa.Success
+  static const fondoJadeSuave = Color(0xFFE7F5EC); // Cupa.SuccessBg
+  static const ambarTatami = Color(0xFF8A520B); // Cupa.Warning
+  static const fondoAmbarSuave = Color(0xFFFBF0DE); // Cupa.WarningBg
+  static const doradoDan = Color(0xFFD4AF37); // Cupa.Gold
+  static const bordeCintaBlanca = Color(0xFF8C97A8);
+  static const sombraSuave = Color(0x140B1B33);
   static const transparente = Color(0x00000000);
+
+  /// Presets de colores amigables que cada academia puede elegir con 1 toque.
+  static const presetsColorAcademia = <(String, String)>[
+    ('CUPA Azul', '#2563EB'),
+    ('Marino Dojang', '#0F2A55'),
+    ('Rojo Hong', '#BC2220'),
+    ('Verde Tatami', '#177A43'),
+    ('Naranja Tigre', '#C2410C'),
+    ('Grafito Negro', '#1E293B'),
+  ];
+
+  /// Degradado de encabezado estilo `Cupa.HeaderBrush`, adaptable al color
+  /// editable de cada academia manteniendo contraste alto con texto blanco.
+  static LinearGradient gradienteEncabezado(String colorPrimarioHex) {
+    final primario = primarioAcademiaAccesible(colorPrimarioHex);
+    final oscuro = Color.lerp(tintaCinturonNegro, primario, 0.28) ??
+        tintaCinturonNegro;
+    final medio =
+        Color.lerp(azulMarinoMedio, primario, 0.45) ?? azulMarinoMedio;
+    return LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: <Color>[oscuro, medio],
+    );
+  }
 
   /// Convierte una cadena hexadecimal `#RRGGBB` en [Color].
   static Color desdeHex(String hex) => Color(hexAArgb(hex));
 
   /// Devuelve el color primario de la academia garantizando contraste
-  /// WCAG 2.1 AA (>= 4.5:1) sobre texto claro `#F7F5F0`.
+  /// WCAG 2.1 AA (>= 4.5:1) sobre texto claro `#F1F5FB`.
   static Color primarioAcademiaAccesible(String colorPrimarioHex) {
     final argbAjustado = asegurarContrasteWcagAA(
       hexAArgb(colorPrimarioHex),
-      fondoArgb: 0xFFF7F5F0,
+      fondoArgb: 0xFFF1F5FB,
       minimo: 4.5,
     );
     return Color(argbAjustado);
   }
 
-  /// Devuelve el color de texto (`#14181F` o `#F7F5F0`) con mayor contraste
+  /// Devuelve el color de texto (`#0B1B33` o `#FFFFFF`) con mayor contraste
   /// WCAG sobre el fondo indicado en hexadecimal.
   static Color textoSobreHex(String fondoHex) {
     final argbFondo = hexAArgb(fondoHex);
-    final contrasteNegro = calcularRazonContraste(0xFF14181F, argbFondo);
-    final contrasteBlanco = calcularRazonContraste(0xFFF7F5F0, argbFondo);
-    return contrasteNegro >= contrasteBlanco ? tintaCinturonNegro : papelDobok;
+    final contrasteNegro = calcularRazonContraste(0xFF0B1B33, argbFondo);
+    final contrasteBlanco = calcularRazonContraste(0xFFFFFFFF, argbFondo);
+    return contrasteNegro >= contrasteBlanco
+        ? tintaCinturonNegro
+        : superficieTatami;
   }
 }
 
-/// Escala tipográfica oficial en `dp` (`docs/diseno.md` §5).
+/// Escala tipográfica oficial en `dp`.
 abstract final class EscalaTipograficaDoyang {
   static const metadato = 12.0;
   static const celda = 14.0;
@@ -61,15 +95,15 @@ abstract final class EscalaTipograficaDoyang {
   static const marcadorPrincipal = 44.0;
 }
 
-/// Dimensiones, radios y objetivos táctiles del sistema (`docs/diseno.md`).
+/// Dimensiones, radios amigables y objetivos táctiles del sistema.
 abstract final class DimensionesDoyang {
   static const objetivoTactilMinimo = 48.0;
   static const altoFilaTactil = 56.0;
   static const puntoQuiebreEscritorioCompacto = 1100.0;
   static const anchoRailCompacto = 76.0;
-  static const anchoSidebarExpandido = 224.0;
-  static const radioContenedor = 6.0;
-  static const radioBoton = 6.0;
+  static const anchoSidebarExpandido = 228.0;
+  static const radioContenedor = 14.0;
+  static const radioBoton = 12.0;
 }
 
 const _familiaOswald = 'Oswald';

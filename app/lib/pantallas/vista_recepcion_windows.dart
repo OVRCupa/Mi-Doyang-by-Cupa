@@ -904,7 +904,7 @@ class _VistaRecepcionWindowsState extends ConsumerState<VistaRecepcionWindows> {
                             : _apellidosAlumnoCtrl.text,
                         fechaNacimientoIso: _fechaNacAlumnoCtrl.text,
                         sexoRama: SexoRama.varonil,
-                        gradoActualId: 'grado-10-geup',
+                        gradoActualId: 'grado-10-kup',
                         horarioGrupo: 'Infantil Principiantes 17:00',
                         tipoSangreOpcional: _tipoSangreCtrl.text,
                         alergiasCuidadosOpcional: _alergiasCtrl.text,

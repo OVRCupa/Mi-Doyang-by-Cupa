@@ -3,16 +3,14 @@ import 'package:mi_doyang_core/mi_doyang_core.dart';
 
 import 'tema_doyang.dart';
 
-/// Faja visual de cinta de Taekwondo (`docs/diseno.md` §3 y §4.2).
+/// Faja horizontal oficial de cinta de Taekwondo (Kup, 1er Poom y Dan).
 ///
-/// Reglas geométricas obligatorias:
-/// - Bloque horizontal con textura de costura longitudinal.
-/// - El `20%` derecho se reserva exclusivamente para la franja vertical de la
-///   **punta** (cuando aplica); el texto del grado se alinea en el `80%`
-///   izquierdo y nunca invade la punta.
-/// - En la cinta **Poom** (dividida horizontalmente en rojo `#B82924` arriba y
-///   negro `#14181F` abajo), cualquier etiqueta en dorado (`#E0A800`) se dibuja
-///   únicamente sobre la mitad negra (`#14181F`, contraste `8.3:1`).
+/// Reglas visuales:
+/// - **Cintas avanzadas (`grado.esAvanzada`):** llevan una **franja horizontal
+///   por la mitad a todo lo largo de la cinta** con el color de la siguiente cinta.
+/// - **Negra 1er Poom (menores de 15 años):** mitad superior Roja y mitad inferior
+///   Negra con distintivo dorado sobre la mitad negra.
+/// - **Negra 1er Dan (mayores de 15 años):** base Negra con barra dorada.
 class BeltWidget extends StatelessWidget {
   final GradoCinta grado;
   final bool compacto;
@@ -26,21 +24,24 @@ class BeltWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorBase = ColoresDoyang.desdeHex(grado.colorBaseHex);
-    final colorPunta =
-        grado.tienePunta ? ColoresDoyang.desdeHex(grado.colorPuntaHex!) : null;
+    final colorSecundario = grado.tienePunta
+        ? ColoresDoyang.desdeHex(grado.colorPuntaHex!)
+        : null;
+    final esAvanzada = grado.esAvanzada;
     final colorTexto = grado.esPoom
-        ? ColoresDoyang.papelDobok
-        : ColoresDoyang.textoSobreHex(grado.colorBaseHex);
-    final alto = compacto ? 32.0 : 42.0;
+        ? ColoresDoyang.superficieTatami
+        : (esAvanzada
+            ? ColoresDoyang.tintaCinturonNegro
+            : ColoresDoyang.textoSobreHex(grado.colorBaseHex));
+
+    final alto = compacto ? 36.0 : 48.0;
 
     return Semantics(
-      label: 'Cinta actual: ${grado.codigo}, ${grado.nombre}',
+      label: 'Grado ${grado.codigo}: ${grado.nombre}',
       child: Container(
         height: alto,
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(DimensionesDoyang.radioContenedor),
-          ),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
           border: Border.all(
             color: ColoresDoyang.bordeCintaBlanca,
             width: 1.2,
@@ -50,38 +51,69 @@ class BeltWidget extends StatelessWidget {
         child: CustomPaint(
           painter: _PintorFajaCinta(
             colorBase: colorBase,
-            colorPunta: colorPunta,
+            colorSecundario: colorSecundario,
+            esAvanzada: esAvanzada,
             esPoom: grado.esPoom,
+            esDan: grado.codigo.contains('Dan'),
           ),
           child: Row(
             children: <Widget>[
-              // 80% izquierdo para el texto del grado (nunca invade la punta)
               Expanded(
                 flex: 8,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(
-                      compacto
-                          ? '${grado.codigo} · ${grado.nombre}'
-                          : '${grado.codigo.toUpperCase()} · ${grado.nombre.toUpperCase()}',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: compacto
-                          ? TipografiaDoyang.metadato(
-                              color: colorTexto,
-                              peso: FontWeight.w700,
-                            )
-                          : TipografiaDoyang.celda(
-                              color: colorTexto,
-                              peso: FontWeight.w700,
+                    child: esAvanzada
+                        // Pastilla de alto contraste para que el texto sobre la
+                        // franja horizontal central siempre pase WCAG AA.
+                        ? Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
                             ),
-                    ),
+                            decoration: BoxDecoration(
+                              color: ColoresDoyang.superficieTatami
+                                  .withValues(alpha: 0.92),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(6)),
+                            ),
+                            child: Text(
+                              compacto
+                                  ? '${grado.codigo} · ${grado.nombre}'
+                                  : '${grado.codigo.toUpperCase()} · ${grado.nombre.toUpperCase()}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: compacto
+                                  ? TipografiaDoyang.metadato(
+                                      color: colorTexto,
+                                      peso: FontWeight.w700,
+                                    )
+                                  : TipografiaDoyang.celda(
+                                      color: colorTexto,
+                                      peso: FontWeight.w700,
+                                    ),
+                            ),
+                          )
+                        : Text(
+                            compacto
+                                ? '${grado.codigo} · ${grado.nombre}'
+                                : '${grado.codigo.toUpperCase()} · ${grado.nombre.toUpperCase()}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: compacto
+                                ? TipografiaDoyang.metadato(
+                                    color: colorTexto,
+                                    peso: FontWeight.w700,
+                                  )
+                                : TipografiaDoyang.celda(
+                                    color: colorTexto,
+                                    peso: FontWeight.w700,
+                                  ),
+                          ),
                   ),
                 ),
               ),
-              // 20% derecho reservado para la punta o distintivo Poom/Dan
               Expanded(
                 flex: 2,
                 child: grado.esPoom
@@ -110,74 +142,82 @@ class BeltWidget extends StatelessWidget {
 
 class _PintorFajaCinta extends CustomPainter {
   final Color colorBase;
-  final Color? colorPunta;
+  final Color? colorSecundario;
+  final bool esAvanzada;
   final bool esPoom;
+  final bool esDan;
 
   const _PintorFajaCinta({
     required this.colorBase,
-    required this.colorPunta,
+    required this.colorSecundario,
+    required this.esAvanzada,
     required this.esPoom,
+    required this.esDan,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-    final pincelBase = Paint()..style = PaintingStyle.fill;
+    final rectCompleto = Offset.zero & size;
 
     if (esPoom) {
-      // Mitad superior roja Hong (#B82924), mitad inferior negra (#14181F)
-      pincelBase.color = ColoresDoyang.selloHong;
+      // Cinta Negra 1er Poom (<15 años): mitad superior roja, mitad inferior negra.
       canvas.drawRect(
         Rect.fromLTWH(0, 0, size.width, size.height / 2),
-        pincelBase,
+        Paint()..color = ColoresDoyang.selloHong,
       );
-      pincelBase.color = ColoresDoyang.tintaCinturonNegro;
       canvas.drawRect(
         Rect.fromLTWH(0, size.height / 2, size.width, size.height / 2),
-        pincelBase,
+        Paint()..color = ColoresDoyang.tintaCinturonNegro,
       );
     } else {
-      pincelBase.color = colorBase;
-      canvas.drawRect(Offset.zero & size, pincelBase);
-
-      // Franja vertical de la punta en el 20% derecho
-      if (colorPunta != null) {
-        final inicioZonaPunta = size.width * 0.80;
-        final anchoFranja = size.width * 0.11;
-        final xFranja = inicioZonaPunta + (size.width * 0.045);
-        final pincelPunta = Paint()
-          ..style = PaintingStyle.fill
-          ..color = colorPunta!;
-        canvas.drawRect(
-          Rect.fromLTWH(xFranja, 0, anchoFranja, size.height),
-          pincelPunta,
-        );
-      }
+      canvas.drawRect(rectCompleto, Paint()..color = colorBase);
     }
 
-    // Líneas de costura longitudinales tradicionales del cinturón
-    final pincelCostura = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.8
-      ..color = ColoresDoyang.bordeCintaBlanca.withAlpha(90);
+    // Cinta avanzada: franja horizontal por la mitad a todo lo largo de la cinta
+    // con el color de la siguiente cinta.
+    if (esAvanzada && colorSecundario != null) {
+      final altoFranja = size.height * 0.30;
+      final topFranja = (size.height - altoFranja) / 2;
+      canvas.drawRect(
+        Rect.fromLTWH(0, topFranja, size.width, altoFranja),
+        Paint()..color = colorSecundario!,
+      );
+    }
 
-    final ySuperior = size.height * 0.18;
-    final yInferior = size.height * 0.82;
-    canvas.drawLine(
-      Offset(0, ySuperior),
-      Offset(size.width, ySuperior),
-      pincelCostura,
-    );
-    canvas.drawLine(
-      Offset(0, yInferior),
-      Offset(size.width, yInferior),
-      pincelCostura,
-    );
+    // Cinta Negra Dan: barra vertical dorada en el extremo derecho.
+    if (esDan && colorSecundario != null) {
+      final anchoBarra = size.width * 0.05;
+      final xBarra = size.width * 0.86;
+      canvas.drawRect(
+        Rect.fromLTWH(xBarra, 0, anchoBarra, size.height),
+        Paint()..color = colorSecundario!,
+      );
+    }
+
+    // Costuras longitudinales de tela de cinta de Taekwondo.
+    final pinturaCostura = Paint()
+      ..color = ColoresDoyang.tintaCinturonNegro.withValues(alpha: 0.16)
+      ..strokeWidth = 1.0;
+    const margenCostura = 5.0;
+    if (size.height > 16) {
+      canvas.drawLine(
+        Offset(0, margenCostura),
+        Offset(size.width, margenCostura),
+        pinturaCostura,
+      );
+      canvas.drawLine(
+        Offset(0, size.height - margenCostura),
+        Offset(size.width, size.height - margenCostura),
+        pinturaCostura,
+      );
+    }
   }
 
   @override
-  bool shouldRepaint(covariant _PintorFajaCinta oldDelegate) {
-    return oldDelegate.colorBase != colorBase ||
-        oldDelegate.colorPunta != colorPunta ||
-        oldDelegate.esPoom != esPoom;
-  }
+  bool shouldRepaint(covariant _PintorFajaCinta oldDelegate) =>
+      oldDelegate.colorBase != colorBase ||
+      oldDelegate.colorSecundario != colorSecundario ||
+      oldDelegate.esAvanzada != esAvanzada ||
+      oldDelegate.esPoom != esPoom ||
+      oldDelegate.esDan != esDan;
 }

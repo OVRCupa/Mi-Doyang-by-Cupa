@@ -2075,7 +2075,7 @@ class MotorDoyang {
       ),
     );
 
-    // Hermano 1: Mateo en Cinta Verde (6.º Geup), elegible para examen a 5.º Geup
+    // Hermano 1: Mateo en Cinta Verde (6.º Kup), elegible para examen a 5.º Kup
     // (requiere 24 asistencias y 3 meses, y pagos al corriente).
     final mateo = Alumno(
       id: 'alumno-mateo',
@@ -2086,7 +2086,7 @@ class MotorDoyang {
       fechaNacimientoIso: '2015-04-12',
       sexoRama: SexoRama.varonil,
       pesoKgOpcional: 36.5,
-      gradoActualId: 'grado-6-geup',
+      gradoActualId: 'grado-6-kup',
       fechaUltimoGradoIso: '2026-06-15',
       asistenciasEnGradoActual: 25,
       horarioGrupo: 'Infantil Avanzados L-M-V 18:00',
@@ -2098,7 +2098,7 @@ class MotorDoyang {
       codigoQr: 'DOYANG-QR-MATEO-001',
     );
 
-    // Hermana 2: Sofía en Cinta Amarilla (8.º Geup).
+    // Hermana 2: Sofía en Cinta Amarilla (8.º Kup).
     final sofia = Alumno(
       id: 'alumno-sofia',
       academiaId: academia.id,
@@ -2108,7 +2108,7 @@ class MotorDoyang {
       fechaNacimientoIso: '2018-09-03',
       sexoRama: SexoRama.femenil,
       pesoKgOpcional: 26.0,
-      gradoActualId: 'grado-8-geup',
+      gradoActualId: 'grado-8-kup',
       fechaUltimoGradoIso: '2026-09-10',
       asistenciasEnGradoActual: 18,
       horarioGrupo: 'Infantil Principiantes M-J 17:00',
@@ -2120,7 +2120,7 @@ class MotorDoyang {
       codigoQr: 'DOYANG-QR-SOFIA-002',
     );
 
-    // Tercer alumno con otro tutor: Diego Ramírez en Cinta Azul (4.º Geup).
+    // Tercer alumno con otro tutor: Diego Ramírez en Cinta Azul (4.º Kup).
     final diego = Alumno(
       id: 'alumno-diego',
       academiaId: academia.id,
@@ -2130,7 +2130,7 @@ class MotorDoyang {
       fechaNacimientoIso: '2013-11-20',
       sexoRama: SexoRama.varonil,
       pesoKgOpcional: 44.0,
-      gradoActualId: 'grado-4-geup',
+      gradoActualId: 'grado-4-kup',
       fechaUltimoGradoIso: '2026-05-10',
       asistenciasEnGradoActual: 27,
       horarioGrupo: 'Cadetes Competidores L-M-V 19:00',
@@ -2310,9 +2310,9 @@ class MotorDoyang {
       convocatoriasExamen: <ConvocatoriaExamen>[convocatoriaInvierno],
       historialGrados: <RegistroHistorialGrado>[
         RegistroHistorialGrado(
-          id: 'hist-mateo-6geup',
+          id: 'hist-mateo-6kup',
           alumnoId: mateo.id,
-          gradoId: 'grado-6-geup',
+          gradoId: 'grado-6-kup',
           obtenidoEnIso: '2026-06-15',
           sinodal: 'Sabonim Kim Tae-Hyun (7.º Dan)',
         ),

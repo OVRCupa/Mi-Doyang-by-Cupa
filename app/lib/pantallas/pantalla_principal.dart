@@ -5,6 +5,7 @@ import 'package:mi_doyang_core/mi_doyang_core.dart';
 
 import '../estado/controlador_doyang.dart';
 import '../theme/tema_doyang.dart';
+import 'pantalla_inicio_doyang.dart';
 import 'vista_instructor_android.dart';
 import 'vista_padre_android.dart';
 import 'vista_recepcion_windows.dart';
@@ -21,6 +22,9 @@ class PantallaPrincipalDoyang extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final estado = ref.watch(controladorDoyangProvider);
     final ctrl = ref.read(controladorDoyangProvider.notifier);
+    if (estado.mostrarInicio) {
+      return const PantallaInicioDoyang();
+    }
     final pendientesOutbox =
         estado.motor.colaOutbox.where((e) => !e.sincronizado).length;
 
@@ -48,9 +52,13 @@ class PantallaPrincipalDoyang extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                // Barra superior institucional con selector de vista/rol
+                // Barra superior institucional estilo CUPA con color editable
                 Container(
-                  color: ColoresDoyang.tintaCinturonNegro,
+                  decoration: BoxDecoration(
+                    gradient: ColoresDoyang.gradienteEncabezado(
+                      estado.motor.academia.colorPrimarioHex,
+                    ),
+                  ),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
@@ -99,6 +107,12 @@ class PantallaPrincipalDoyang extends ConsumerWidget {
                         spacing: 6,
                         runSpacing: 6,
                         children: <Widget>[
+                          _ChipSelectorVista(
+                            llave: const Key('selector-vista-inicio'),
+                            etiqueta: 'Inicio',
+                            activo: false,
+                            alTocar: ctrl.irAInicio,
+                          ),
                           _ChipSelectorVista(
                             llave: const Key('selector-vista-recepcion'),
                             etiqueta: 'Recepción (Windows)',

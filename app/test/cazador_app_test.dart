@@ -10,6 +10,7 @@ Widget _crearAppDestructiva({double escalaTexto = 1.0}) {
   return ProviderScope(
     overrides: [
       almacenDoyangProvider.overrideWithValue(AlmacenMemoriaDoyang()),
+      iniciarEnPantallaInicioProvider.overrideWithValue(false),
     ],
     child: MediaQuery(
       data: MediaQueryData(textScaler: TextScaler.linear(escalaTexto)),
