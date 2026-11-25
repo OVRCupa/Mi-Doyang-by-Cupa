@@ -1,6 +1,8 @@
 # Cambios · Mi Doyang by Cupa (`gestion-academias`)
 
 ## [Sin publicar]
+- **Suite Oficial `MI DOYANG` recreando los 9 formatos maestros de `OVR CUPA` (`marca/` + `LogoMiDoyang` Halo):**
+  - Generación de las 8 variantes maestras vectoriales/PNG en `marca/` (`01_oscuro_doble_linea` a `08_halo_transparente`) con los colores exactos `#031D38`, `#B20602`, `#111111`, `#F2F2F2`, `#111827` y `#041F3C`, tanto en formato **doble línea** (*PVC Reverso*) como en **barra única degradada** (*v2*) y **filete blanco + halo difuminado** sobre oscuro.
 - **Reajuste de Logo Bicolor + Alineación Izquierda de `"BY CUPA"` y Rediseño de Encabezado / Ajustes de Academia:**
   - Actualización de `LogoMiDoyang` y kit `marca/` con `"MI"` en negro/claro, `"D"` en rojo, `"O"` partida azul/roja, `"YANG"` en azul y `"BY CUPA"` alineado al lado izquierdo del logo, además de serie de 6 bocetos comparativos.
   - Corrección de botones de navegación superior (`Dashboard`, `Recepción`, `Padres`, `Instructor`) a pastillas compactas en una sola fila horizontal y rediseño completo de la vista **Ajustes de Academia** (`Identidad y Reglas` sin truncamientos + tabla estructurada de 14 cintas Kup/Poom/Dan con franja continua de extremo a extremo y edición por grado).

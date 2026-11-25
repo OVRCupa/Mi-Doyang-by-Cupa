@@ -27,12 +27,12 @@ class LogoMiDoyang extends StatelessWidget {
     this.altoPersonalizado,
   });
 
-  static const double _viewBoxW = 1784.65;
-  static const double _viewBoxH = 400.0;
+  static const double _viewBoxW = 1776.65;
+  static const double _viewBoxH = 385.0;
 
   @override
   Widget build(BuildContext context) {
-    final alto = altoPersonalizado ?? (compacto ? 38.0 : 52.0);
+    final alto = altoPersonalizado ?? (compacto ? 40.0 : 54.0);
     final ancho = alto * (_viewBoxW / _viewBoxH);
 
     return Semantics(
@@ -44,9 +44,18 @@ class LogoMiDoyang extends StatelessWidget {
         child: SizedBox(
           width: ancho,
           height: alto,
-          child: CustomPaint(
-            painter: _PintorLogoCorporativoCupa(sobreOscuro: sobreOscuro),
-          ),
+          child: sobreOscuro
+              ? Image.asset(
+                  'assets/imagenes/logo_mi_doyang_halo.png',
+                  fit: BoxFit.contain,
+                  filterQuality: FilterQuality.high,
+                  errorBuilder: (_, _, _) => const CustomPaint(
+                    painter: _PintorLogoCorporativoCupa(sobreOscuro: true),
+                  ),
+                )
+              : const CustomPaint(
+                  painter: _PintorLogoCorporativoCupa(sobreOscuro: false),
+                ),
         ),
       ),
     );
@@ -58,15 +67,15 @@ class _PintorLogoCorporativoCupa extends CustomPainter {
 
   const _PintorLogoCorporativoCupa({required this.sobreOscuro});
 
-  static const double _vbW = 1784.65;
-  static const double _vbH = 400.0;
+  static const double _vbW = 1776.65;
+  static const double _vbH = 385.0;
   static const double _wordmarkLeft = 50.0;
-  static const double _wordmarkWidth = 1684.65;
+  static const double _wordmarkWidth = 1676.65;
   static const double _baselineY = 250.0;
-  static const double _subY = 350.0;
+  static const double _subY = 346.0;
   static const double _scaleMain = 0.147651;
   static const double _scaleSub = 0.021477;
-  static const double _oCx = 774.49;
+  static const double _oCx = 766.49;
   static const double _oCy = 140.0;
   static const double _oR = 110.0;
   static const double _oGapHalf = 3.5;
@@ -74,21 +83,21 @@ class _PintorLogoCorporativoCupa extends CustomPainter {
   static const List<(String, double)> _mainGlyphs = <(String, double)>[
     ('M', 32.80),
     ('I', 305.66),
-    ('D', 443.39),
-    ('Y', 871.83),
-    ('A', 1083.27),
-    ('N', 1301.20),
-    ('G', 1522.97),
+    ('D', 437.39),
+    ('Y', 863.83),
+    ('A', 1075.27),
+    ('N', 1293.20),
+    ('G', 1514.97),
   ];
 
   // Subtítulo "B Y   C U P A" alineado exactamente al lado izquierdo del logo (x=50)
   static const List<(String, double)> _subGlyphs = <(String, double)>[
     ('B', 47.50),
-    ('Y', 96.02),
-    ('C', 166.78),
-    ('U', 218.84),
-    ('P', 270.09),
-    ('A', 318.03),
+    ('Y', 94.02),
+    ('C', 162.77),
+    ('U', 212.84),
+    ('P', 262.09),
+    ('A', 308.03),
   ];
 
   static final Map<String, Path> _glyphPaths = <String, Path>{
