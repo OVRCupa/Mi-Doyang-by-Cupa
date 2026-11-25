@@ -1,6 +1,9 @@
 # Cambios · Mi Doyang by Cupa (`gestion-academias`)
 
 ## [Sin publicar]
+- **Reajuste de Logo Bicolor + Alineación Izquierda de `"BY CUPA"` y Rediseño de Encabezado / Ajustes de Academia:**
+  - Actualización de `LogoMiDoyang` y kit `marca/` con `"MI"` en negro/claro, `"D"` en rojo, `"O"` partida azul/roja, `"YANG"` en azul y `"BY CUPA"` alineado al lado izquierdo del logo, además de serie de 6 bocetos comparativos.
+  - Corrección de botones de navegación superior (`Dashboard`, `Recepción`, `Padres`, `Instructor`) a pastillas compactas en una sola fila horizontal y rediseño completo de la vista **Ajustes de Academia** (`Identidad y Reglas` sin truncamientos + tabla estructurada de 14 cintas Kup/Poom/Dan con franja continua de extremo a extremo y edición por grado).
 - **Dashboard Ejecutivo de Inicio, Control de Gastos Operativos (`GastoAcademia`) y Encabezado Institucional:**
   - Encabezado institucional en toda la aplicación con el logo oficial **`MI DOYANG / BY CUPA`** en la esquina superior izquierda y el **nombre de la academia centrado** en el encabezado.
   - Regeneración de los 3 botones principales en **pequeños módulos principales compactos** de acceso inmediato (*Recepción y Caja*, *Portal de Padres*, *Instructor en Tatami*).

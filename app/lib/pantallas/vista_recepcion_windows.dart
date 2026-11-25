@@ -175,7 +175,7 @@ class _VistaRecepcionWindowsState extends ConsumerState<VistaRecepcionWindows> {
       case 4:
         return _construirSeccionTorneosYCupa(estado, ctrl);
       case 5:
-        return _construirSeccionPersonalizacionDojang(estado, ctrl);
+        return _construirSeccionPersonalizacionDojang(context, estado, ctrl);
       default:
         return _construirSeccionCajaYTickets(
           estado,
@@ -1229,9 +1229,107 @@ class _VistaRecepcionWindowsState extends ConsumerState<VistaRecepcionWindows> {
     );
   }
 
-  // ── SECCIÓN 5: M1 · PERSONALIZACIÓN DEL DOJANG ───────────────────────────
+  // ── SECCIÓN 5: PERSONALIZACIÓN E IDENTIDAD DE LA ACADEMIA ────────────────
+
+  void _mostrarDialogoEditarGrado(
+    BuildContext context,
+    GradoCinta grado,
+    ControladorDoyang ctrl,
+  ) {
+    final clasesCtrl =
+        TextEditingController(text: grado.asistenciasMinimas.toString());
+    final mesesCtrl =
+        TextEditingController(text: grado.mesesMinimos.toString());
+    final costoCtrl = TextEditingController(
+      text: (grado.costoExamenCentavos ~/ 100).toString(),
+    );
+
+    showDialog<void>(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          title: Text(
+            'Editar ${grado.codigo} · ${grado.nombre}',
+            style: TipografiaDoyang.tituloSeccion(),
+          ),
+          content: SizedBox(
+            width: 360,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                BeltWidget(
+                  grado: grado,
+                  compacto: true,
+                  mostrarEtiqueta: false,
+                ),
+                const SizedBox(height: 14),
+                TextField(
+                  controller: clasesCtrl,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    labelText: 'Clases mínimas requeridas',
+                  ),
+                ),
+                const SizedBox(height: 10),
+                TextField(
+                  controller: mesesCtrl,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    labelText: 'Meses mínimos en el grado',
+                  ),
+                ),
+                const SizedBox(height: 10),
+                TextField(
+                  controller: costoCtrl,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    labelText: 'Costo de examen (MXN)',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            OutlinedButton(
+              onPressed: () => Navigator.of(ctx).pop(),
+              child: const Text('Cancelar'),
+            ),
+            FilledButton(
+              onPressed: () {
+                final nuevasClases =
+                    int.tryParse(clasesCtrl.text.trim()) ??
+                        grado.asistenciasMinimas;
+                final nuevosMeses =
+                    int.tryParse(mesesCtrl.text.trim()) ?? grado.mesesMinimos;
+                final nuevoCostoPesos = int.tryParse(costoCtrl.text.trim()) ??
+                    (grado.costoExamenCentavos ~/ 100);
+                ctrl.guardarGradoPersonalizado(
+                  GradoCinta(
+                    id: grado.id,
+                    orden: grado.orden,
+                    codigo: grado.codigo,
+                    nombre: grado.nombre,
+                    colorBaseHex: grado.colorBaseHex,
+                    colorPuntaHex: grado.colorPuntaHex,
+                    esPoom: grado.esPoom,
+                    mesesMinimos: nuevosMeses,
+                    asistenciasMinimas: nuevasClases,
+                    costoExamenCentavos: nuevoCostoPesos * 100,
+                  ),
+                );
+                Navigator.of(ctx).pop();
+              },
+              child: const Text('Guardar grado'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   Widget _construirSeccionPersonalizacionDojang(
+    BuildContext context,
     EstadoAppDoyang estado,
     ControladorDoyang ctrl,
   ) {
@@ -1241,134 +1339,313 @@ class _VistaRecepcionWindowsState extends ConsumerState<VistaRecepcionWindows> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           _TarjetaSeccion(
-            titulo:
-                'M1 · IDENTIDAD VISUAL, REGLAS FINANCIERAS Y CONTRASTE WCAG AA',
-            hijo: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Wrap(
-                  spacing: 12,
-                  runSpacing: 12,
+            titulo: 'IDENTIDAD Y REGLAS DE TU ACADEMIA',
+            accionEncabezado: FilledButton(
+              onPressed: () {
+                final pesos =
+                    int.tryParse(_mensualidadAcadCtrl.text.trim()) ?? 800;
+                final d2 = int.tryParse(_desc2HermanoCtrl.text.trim()) ?? 10;
+                final d3 = int.tryParse(_desc3HermanoCtrl.text.trim()) ?? 20;
+                ctrl.actualizarConfiguracionAcademia(
+                  acad.copyWith(
+                    nombre: _nombreAcadCtrl.text.trim(),
+                    lema: _lemaAcadCtrl.text.trim(),
+                    colorPrimarioHex: _colorAcadCtrl.text.trim(),
+                    mensualidadBaseCentavos: pesos * 100,
+                    descuentoSegundoHermanoPct: d2,
+                    descuentoTercerHermanoPct: d3,
+                  ),
+                );
+              },
+              child: const Text('Guardar cambios'),
+            ),
+            hijo: LayoutBuilder(
+              builder: (context, c) {
+                final esAncho = c.maxWidth >= 720;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    SizedBox(
-                      width: 260,
-                      child: TextField(
+                    // Fila 1: Nombre comercial y lema institucional con amplitud completa
+                    if (esAncho)
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            flex: 5,
+                            child: TextField(
+                              controller: _nombreAcadCtrl,
+                              decoration: const InputDecoration(
+                                labelText: 'Nombre comercial de la academia',
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            flex: 6,
+                            child: TextField(
+                              controller: _lemaAcadCtrl,
+                              decoration: const InputDecoration(
+                                labelText: 'Lema institucional',
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    else ...<Widget>[
+                      TextField(
                         controller: _nombreAcadCtrl,
                         decoration: const InputDecoration(
-                          labelText: 'Nombre comercial del Dojang',
+                          labelText: 'Nombre comercial de la academia',
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 280,
-                      child: TextField(
+                      const SizedBox(height: 10),
+                      TextField(
                         controller: _lemaAcadCtrl,
                         decoration: const InputDecoration(
                           labelText: 'Lema institucional',
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 180,
-                      child: TextField(
-                        controller: _colorAcadCtrl,
-                        decoration: const InputDecoration(
-                          labelText: 'Color primario Hex (#RRGGBB)',
+                    ],
+                    const SizedBox(height: 14),
+
+                    // Fila 2: Reglas financieras de mensualidades y descuentos familiares
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 210,
+                          child: TextField(
+                            controller: _mensualidadAcadCtrl,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              labelText: 'Mensualidad base (MXN)',
+                            ),
+                          ),
                         ),
+                        SizedBox(
+                          width: 210,
+                          child: TextField(
+                            controller: _desc2HermanoCtrl,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              labelText: 'Descuento 2.º hermano (%)',
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 210,
+                          child: TextField(
+                            controller: _desc3HermanoCtrl,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              labelText: 'Descuento 3.er hermano (%)',
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 210,
+                          child: TextField(
+                            controller: _colorAcadCtrl,
+                            decoration: const InputDecoration(
+                              labelText: 'Código de color (#RRGGBB)',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 14),
+
+                    // Selector visual de colores institucionales con muestras reales
+                    Text(
+                      'Paleta editable de la academia (selección rápida):',
+                      style: TipografiaDoyang.etiqueta(
+                        color: ColoresDoyang.tintaCinturonNegro,
                       ),
                     ),
-                    SizedBox(
-                      width: 180,
-                      child: TextField(
-                        controller: _mensualidadAcadCtrl,
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          labelText: 'Mensualidad base (MXN)',
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 160,
-                      child: TextField(
-                        controller: _desc2HermanoCtrl,
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          labelText: 'Desc. 2.º hermano (%)',
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 160,
-                      child: TextField(
-                        controller: _desc3HermanoCtrl,
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          labelText: 'Desc. 3.er hermano (%)',
-                        ),
-                      ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: <Widget>[
+                        for (final preset in ColoresDoyang.presetsColorAcademia)
+                          OutlinedButton(
+                            onPressed: () {
+                              _colorAcadCtrl.text = preset.$2;
+                              ctrl.actualizarColorPrimarioRapido(preset.$2);
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Container(
+                                  width: 14,
+                                  height: 14,
+                                  decoration: BoxDecoration(
+                                    color: ColoresDoyang.desdeHex(preset.$2),
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Text(preset.$1),
+                              ],
+                            ),
+                          ),
+                      ],
                     ),
                   ],
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  'Color configurado: ${acad.colorPrimarioHex} → Color ajustado WCAG AA (>= 4.5:1): ${acad.colorPrimarioSobreTextoClaroHex}',
-                  style: TipografiaDoyang.celda(peso: FontWeight.w600),
-                ),
-                const SizedBox(height: 10),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: FilledButton(
-                    onPressed: () {
-                      final pesos =
-                          int.tryParse(_mensualidadAcadCtrl.text.trim()) ?? 800;
-                      final d2 =
-                          int.tryParse(_desc2HermanoCtrl.text.trim()) ?? 10;
-                      final d3 =
-                          int.tryParse(_desc3HermanoCtrl.text.trim()) ?? 20;
-                      ctrl.actualizarConfiguracionAcademia(
-                        acad.copyWith(
-                          nombre: _nombreAcadCtrl.text.trim(),
-                          lema: _lemaAcadCtrl.text.trim(),
-                          colorPrimarioHex: _colorAcadCtrl.text.trim(),
-                          mensualidadBaseCentavos: pesos * 100,
-                          descuentoSegundoHermanoPct: d2,
-                          descuentoTercerHermanoPct: d3,
-                        ),
-                      );
-                    },
-                    child: const Text('Guardar personalización del Dojang'),
-                  ),
-                ),
-              ],
+                );
+              },
             ),
           ),
           const SizedBox(height: 14),
           _TarjetaSeccion(
             titulo:
-                'ESCALAFÓN DE CINTAS Y PUNTAS (${estado.motor.grados.length} GRADOS)',
-            hijo: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                for (final g in estado.motor.grados) ...<Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        flex: 5,
-                        child: BeltWidget(grado: g, compacto: true),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        flex: 6,
-                        child: Text(
-                          'Orden ${g.orden} · Mín: ${g.asistenciasMinimas} clases / ${g.mesesMinimos} meses · Examen: ${formatearMxn(g.costoExamenCentavos)}',
-                          style: TipografiaDoyang.celda(),
+                'ESCALAFÓN OFICIAL DE CINTAS KUP, POOM Y DAN (${estado.motor.grados.length} GRADOS)',
+            accionEncabezado: Text(
+              'Las cintas avanzadas muestran franja central del siguiente color',
+              style: TipografiaDoyang.metadato(peso: FontWeight.w600),
+            ),
+            hijo: LayoutBuilder(
+              builder: (context, c) {
+                final vistaTabla = c.maxWidth >= 760;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    for (final g in estado.motor.grados) ...<Widget>[
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 10,
                         ),
+                        decoration: BoxDecoration(
+                          color: ColoresDoyang.papelDobok,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          border: Border.all(color: ColoresDoyang.bordePiedra),
+                        ),
+                        child: vistaTabla
+                            ? Row(
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: 34,
+                                    child: Text(
+                                      '#${g.orden.toString().padLeft(2, "0")}',
+                                      style: TipografiaDoyang.metadato(
+                                        peso: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 210,
+                                    child: BeltWidget(
+                                      grado: g,
+                                      compacto: true,
+                                      mostrarEtiqueta: false,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Expanded(
+                                    flex: 5,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          '${g.codigo} · ${g.nombre}',
+                                          style: TipografiaDoyang.cuerpo(
+                                            peso: FontWeight.w700,
+                                          ),
+                                        ),
+                                        Text(
+                                          g.esPoom
+                                              ? 'Menores de 15 años · Rojinegra'
+                                              : g.codigo.contains('Dan')
+                                                  ? 'Mayores de 15 años · Cinta Negra Dan'
+                                                  : g.esAvanzada
+                                                      ? 'Cinta avanzada con franja longitudinal al centro'
+                                                      : 'Cinta base sólida',
+                                          style: TipografiaDoyang.metadato(),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 4,
+                                    child: Text(
+                                      g.orden == 1
+                                          ? 'Ingreso inicial'
+                                          : 'Mín. ${g.asistenciasMinimas} clases · ${g.mesesMinimos} meses',
+                                      style: TipografiaDoyang.celda(
+                                        peso: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 125,
+                                    child: Text(
+                                      g.costoExamenCentavos == 0
+                                          ? 'Sin costo'
+                                          : formatearMxn(g.costoExamenCentavos),
+                                      textAlign: TextAlign.right,
+                                      style: TipografiaDoyang.celda(
+                                        color: ColoresDoyang.tintaCinturonNegro,
+                                        peso: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  OutlinedButton(
+                                    onPressed: () => _mostrarDialogoEditarGrado(
+                                      context,
+                                      g,
+                                      ctrl,
+                                    ),
+                                    child: const Text('Editar'),
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: Text(
+                                          '#${g.orden.toString().padLeft(2, "0")} · ${g.codigo} · ${g.nombre}',
+                                          style: TipografiaDoyang.cuerpo(
+                                            peso: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ),
+                                      OutlinedButton(
+                                        onPressed: () =>
+                                            _mostrarDialogoEditarGrado(
+                                          context,
+                                          g,
+                                          ctrl,
+                                        ),
+                                        child: const Text('Editar'),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 6),
+                                  BeltWidget(
+                                    grado: g,
+                                    compacto: true,
+                                    mostrarEtiqueta: false,
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Text(
+                                    'Mín. ${g.asistenciasMinimas} clases / ${g.mesesMinimos} meses · Examen: ${formatearMxn(g.costoExamenCentavos)}',
+                                    style: TipografiaDoyang.metadato(),
+                                  ),
+                                ],
+                              ),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 8),
-                ],
-              ],
+                  ],
+                );
+              },
             ),
           ),
         ],
@@ -1578,11 +1855,11 @@ class _BarraNavegacionLateral extends StatelessWidget {
 
   static const _destinos = <(String, String, IconData)>[
     ('[F2] Caja', 'Caja', Icons.point_of_sale),
-    ('Alumnos / ARCO', 'Alumnos', Icons.groups),
+    ('Alumnos y Familias', 'Alumnos', Icons.groups),
     ('Exámenes / Cintas', 'Grados', Icons.military_tech),
     ('Equipo / Stock', 'Equipo', Icons.checkroom),
     ('Torneos / CUPA', 'Torneos', Icons.emoji_events),
-    ('Ajustes Dojang', 'Ajustes', Icons.tune),
+    ('Ajustes de Academia', 'Ajustes', Icons.tune),
   ];
 
   @override
@@ -1688,8 +1965,10 @@ class _BarraNavegacionLateral extends StatelessWidget {
               ),
               child: Text(
                 compacto
-                    ? 'Cola: $pendientesOutbox'
-                    : 'Cola Outbox: $pendientesOutbox pendientes',
+                    ? (pendientesOutbox == 0 ? 'En línea' : 'Cola: $pendientesOutbox')
+                    : (pendientesOutbox == 0
+                        ? 'Sincronizado ✓'
+                        : 'Pendientes de subir: $pendientesOutbox'),
                 textAlign: TextAlign.center,
                 style: TipografiaDoyang.metadato(
                   color: ColoresDoyang.papelDobok,

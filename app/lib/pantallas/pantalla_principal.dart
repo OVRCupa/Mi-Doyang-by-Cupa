@@ -147,19 +147,21 @@ class PantallaPrincipalDoyang extends ConsumerWidget {
 
                       if (constraints.maxWidth >= 980) {
                         return Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Expanded(
+                              flex: 3,
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: logoWidget,
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 12),
-                              child: centroAcademia,
+                            Expanded(
+                              flex: 4,
+                              child: Center(child: centroAcademia),
                             ),
                             Expanded(
+                              flex: 3,
                               child: Align(
                                 alignment: Alignment.centerRight,
                                 child: chipsNavegacion,
@@ -257,30 +259,32 @@ class _ChipSelectorVista extends StatelessWidget {
     return InkWell(
       key: llave,
       onTap: alTocar,
-      borderRadius: const BorderRadius.all(Radius.circular(6)),
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
       child: Container(
-        constraints: const BoxConstraints(
-          minHeight: 38,
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        constraints: const BoxConstraints(minHeight: 38),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           color: activo
               ? ColoresDoyang.azulChung
-              : ColoresDoyang.bordeActivo.withAlpha(80),
-          borderRadius: const BorderRadius.all(Radius.circular(6)),
+              : ColoresDoyang.tintaCinturonNegro.withValues(alpha: 0.45),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
           border: Border.all(
             color: activo
                 ? ColoresDoyang.papelDobok
-                : ColoresDoyang.bordeActivo,
+                : ColoresDoyang.superficieTatami.withValues(alpha: 0.30),
           ),
         ),
-        alignment: Alignment.center,
-        child: Text(
-          etiqueta,
-          style: TipografiaDoyang.metadato(
-            color: ColoresDoyang.papelDobok,
-            peso: activo ? FontWeight.w700 : FontWeight.w500,
-          ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              etiqueta,
+              style: TipografiaDoyang.metadato(
+                color: ColoresDoyang.papelDobok,
+                peso: activo ? FontWeight.w700 : FontWeight.w600,
+              ),
+            ),
+          ],
         ),
       ),
     );

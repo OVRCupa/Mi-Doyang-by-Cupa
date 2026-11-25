@@ -14,11 +14,13 @@ import 'tema_doyang.dart';
 class BeltWidget extends StatelessWidget {
   final GradoCinta grado;
   final bool compacto;
+  final bool mostrarEtiqueta;
 
   const BeltWidget({
     super.key,
     required this.grado,
     this.compacto = false,
+    this.mostrarEtiqueta = true,
   });
 
   @override
@@ -34,7 +36,7 @@ class BeltWidget extends StatelessWidget {
             ? ColoresDoyang.tintaCinturonNegro
             : ColoresDoyang.textoSobreHex(grado.colorBaseHex));
 
-    final alto = compacto ? 36.0 : 48.0;
+    final alto = compacto ? 34.0 : 48.0;
 
     return Semantics(
       label: 'Grado ${grado.codigo}: ${grado.nombre}',
@@ -56,84 +58,104 @@ class BeltWidget extends StatelessWidget {
             esPoom: grado.esPoom,
             esDan: grado.codigo.contains('Dan'),
           ),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                flex: 8,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: esAvanzada
-                        // Pastilla de alto contraste para que el texto sobre la
-                        // franja horizontal central siempre pase WCAG AA.
-                        ? Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              color: ColoresDoyang.superficieTatami
-                                  .withValues(alpha: 0.92),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(6)),
-                            ),
-                            child: Text(
-                              compacto
-                                  ? '${grado.codigo} · ${grado.nombre}'
-                                  : '${grado.codigo.toUpperCase()} · ${grado.nombre.toUpperCase()}',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: compacto
-                                  ? TipografiaDoyang.metadato(
-                                      color: colorTexto,
-                                      peso: FontWeight.w700,
-                                    )
-                                  : TipografiaDoyang.celda(
-                                      color: colorTexto,
-                                      peso: FontWeight.w700,
-                                    ),
-                            ),
-                          )
-                        : Text(
-                            compacto
-                                ? '${grado.codigo} · ${grado.nombre}'
-                                : '${grado.codigo.toUpperCase()} · ${grado.nombre.toUpperCase()}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: compacto
-                                ? TipografiaDoyang.metadato(
-                                    color: colorTexto,
-                                    peso: FontWeight.w700,
-                                  )
-                                : TipografiaDoyang.celda(
-                                    color: colorTexto,
-                                    peso: FontWeight.w700,
-                                  ),
-                          ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: grado.esPoom
-                    ? Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 2),
-                          child: Text(
-                            'POOM',
-                            style: TipografiaDoyang.metadato(
-                              color: ColoresDoyang.doradoDan,
-                              peso: FontWeight.w700,
-                            ),
+          child: !mostrarEtiqueta
+              ? (grado.esPoom
+                  ? Align(
+                      alignment: Alignment.bottomRight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10, bottom: 2),
+                        child: Text(
+                          'POOM',
+                          style: TipografiaDoyang.metadato(
+                            color: ColoresDoyang.doradoDan,
+                            peso: FontWeight.w700,
                           ),
                         ),
-                      )
-                    : const SizedBox.expand(),
-              ),
-            ],
-          ),
+                      ),
+                    )
+                  : const SizedBox.expand())
+              : Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 8,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: esAvanzada ? 22 : 10,
+                          right: 10,
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: esAvanzada
+                              // Pastilla desplazada ligeramente a la derecha para que la
+                              // franja horizontal central se vea continua de extremo a extremo.
+                              ? Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 2,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: ColoresDoyang.superficieTatami
+                                        .withValues(alpha: 0.92),
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(6),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    compacto
+                                        ? '${grado.codigo} · ${grado.nombre}'
+                                        : '${grado.codigo.toUpperCase()} · ${grado.nombre.toUpperCase()}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: compacto
+                                        ? TipografiaDoyang.metadato(
+                                            color: colorTexto,
+                                            peso: FontWeight.w700,
+                                          )
+                                        : TipografiaDoyang.celda(
+                                            color: colorTexto,
+                                            peso: FontWeight.w700,
+                                          ),
+                                  ),
+                                )
+                              : Text(
+                                  compacto
+                                      ? '${grado.codigo} · ${grado.nombre}'
+                                      : '${grado.codigo.toUpperCase()} · ${grado.nombre.toUpperCase()}',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: compacto
+                                      ? TipografiaDoyang.metadato(
+                                          color: colorTexto,
+                                          peso: FontWeight.w700,
+                                        )
+                                      : TipografiaDoyang.celda(
+                                          color: colorTexto,
+                                          peso: FontWeight.w700,
+                                        ),
+                                ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: grado.esPoom
+                          ? Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 2),
+                                child: Text(
+                                  'POOM',
+                                  style: TipografiaDoyang.metadato(
+                                    color: ColoresDoyang.doradoDan,
+                                    peso: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : const SizedBox.expand(),
+                    ),
+                  ],
+                ),
         ),
       ),
     );

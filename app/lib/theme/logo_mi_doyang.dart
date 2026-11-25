@@ -81,13 +81,14 @@ class _PintorLogoCorporativoCupa extends CustomPainter {
     ('G', 1522.97),
   ];
 
+  // Subtítulo "B Y   C U P A" alineado exactamente al lado izquierdo del logo (x=50)
   static const List<(String, double)> _subGlyphs = <(String, double)>[
-    ('B', 740.15),
-    ('Y', 788.67),
-    ('C', 859.43),
-    ('U', 911.49),
-    ('P', 962.74),
-    ('A', 1010.68),
+    ('B', 47.50),
+    ('Y', 96.02),
+    ('C', 166.78),
+    ('U', 218.84),
+    ('P', 270.09),
+    ('A', 318.03),
   ];
 
   static final Map<String, Path> _glyphPaths = <String, Path>{
@@ -108,22 +109,29 @@ class _PintorLogoCorporativoCupa extends CustomPainter {
     );
     canvas.scale(s, s);
 
-    final colorTexto = sobreOscuro
+    final colorMi = sobreOscuro
         ? ColoresDoyang.logoTextoClaro
         : ColoresDoyang.logoTextoOscuro;
-    final colorAzul = sobreOscuro
+    final colorAzulCirculo = sobreOscuro
         ? ColoresDoyang.logoAzulSobreOscuro
         : ColoresDoyang.logoAzulSobreClaro;
+    final colorYang = sobreOscuro
+        ? ColoresDoyang.logoAzulSobreOscuro
+        : ColoresDoyang.logoYangSobreClaro;
     final colorRojo = sobreOscuro
         ? ColoresDoyang.logoRojoSobreOscuro
         : ColoresDoyang.logoRojoSobreClaro;
 
-    final paintTexto = Paint()
-      ..color = colorTexto
+    final paintMi = Paint()
+      ..color = colorMi
       ..style = PaintingStyle.fill
       ..isAntiAlias = true;
-    final paintAzul = Paint()
-      ..color = colorAzul
+    final paintAzulCirculo = Paint()
+      ..color = colorAzulCirculo
+      ..style = PaintingStyle.fill
+      ..isAntiAlias = true;
+    final paintYang = Paint()
+      ..color = colorYang
       ..style = PaintingStyle.fill
       ..isAntiAlias = true;
     final paintRojo = Paint()
@@ -131,18 +139,26 @@ class _PintorLogoCorporativoCupa extends CustomPainter {
       ..style = PaintingStyle.fill
       ..isAntiAlias = true;
 
-    // 1. Letras principales "MI D" y "YANG" en Inter Bold
+    // 1. Letras principales: "MI" (negro/claro), "D" (rojo) y "YANG" (azul)
     for (final (ch, gx) in _mainGlyphs) {
       final path = _glyphPaths[ch];
       if (path == null) continue;
+      final Paint pinturaLetra;
+      if (ch == 'M' || ch == 'I') {
+        pinturaLetra = paintMi;
+      } else if (ch == 'D') {
+        pinturaLetra = paintRojo;
+      } else {
+        pinturaLetra = paintYang;
+      }
       canvas.save();
       canvas.translate(gx, _baselineY);
       canvas.scale(_scaleMain, -_scaleMain);
-      canvas.drawPath(path, paintTexto);
+      canvas.drawPath(path, pinturaLetra);
       canvas.restore();
     }
 
-    // 2. Círculo sólido partido "O" (exacto a OVR CUPA y OSS CUPA, sin anillo)
+    // 2. Círculo sólido partido "O" (mitad izquierda azul, mitad derecha roja)
     final theta0 = math.asin(_oGapHalf / _oR);
     final rectCirculo = Rect.fromCircle(
       center: const Offset(_oCx, _oCy),
@@ -156,7 +172,7 @@ class _PintorLogoCorporativoCupa extends CustomPainter {
         math.pi - 2.0 * theta0,
       )
       ..close();
-    canvas.drawPath(mitadIzquierda, paintAzul);
+    canvas.drawPath(mitadIzquierda, paintAzulCirculo);
 
     final mitadDerecha = Path()
       ..addArc(
@@ -173,7 +189,7 @@ class _PintorLogoCorporativoCupa extends CustomPainter {
         const Rect.fromLTWH(_wordmarkLeft, 268.0, _wordmarkWidth, 7.0),
         const Radius.circular(1.5),
       ),
-      paintAzul,
+      paintAzulCirculo,
     );
     canvas.drawRRect(
       RRect.fromRectAndRadius(
@@ -183,14 +199,14 @@ class _PintorLogoCorporativoCupa extends CustomPainter {
       paintRojo,
     );
 
-    // 4. Tagline inferior centrado: "B Y   C U P A"
+    // 4. Tagline inferior alineado a la izquierda: "B Y   C U P A"
     for (final (ch, tx) in _subGlyphs) {
       final path = _glyphPaths[ch];
       if (path == null) continue;
       canvas.save();
       canvas.translate(tx, _subY);
       canvas.scale(_scaleSub, -_scaleSub);
-      canvas.drawPath(path, paintTexto);
+      canvas.drawPath(path, paintMi);
       canvas.restore();
     }
 
