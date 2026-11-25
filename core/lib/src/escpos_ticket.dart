@@ -76,6 +76,7 @@ String generarComprobanteHtmlImprimible({
 <style>
   body { font-family: "Courier New", Courier, monospace; background: #F7F5F0; color: #14181F; padding: 24px; }
   .ticket { max-width: 420px; margin: 0 auto; background: #FFFFFF; border: 1px solid #D6D1C7; padding: 20px; }
+  .brand { margin-bottom: 10px; }
   .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #4A5260; padding-bottom: 8px; margin-bottom: 12px; }
   .sello { border: 2px solid $colorSello; color: $colorSello; font-weight: bold; padding: 2px 8px; font-size: 13px; }
   pre { margin: 0; font-size: 13px; line-height: 1.4; white-space: pre-wrap; }
@@ -85,6 +86,7 @@ String generarComprobanteHtmlImprimible({
 </head>
 <body>
   <div class="ticket">
+    <div class="brand">$_svgLogoMiDoyangSobreClaro</div>
     <div class="header">
       <strong>FOLIO ${_escaparHtml(ticket.folio)}</strong>
       <span class="sello">$sello</span>
@@ -157,3 +159,15 @@ String _escaparHtml(String s) => s
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;');
+
+const String _svgLogoMiDoyangSobreClaro =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1776.65 385" height="32" style="display:block">'
+    '<text x="45" y="246" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="252" fill="#111111">MI</text>'
+    '<text x="435" y="246" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="252" fill="#b20602">D</text>'
+    '<path d="M 762.99 30.06 A 110.0 110.0 0 0 0 762.99 249.94 Z" fill="#031d38" />'
+    '<path d="M 769.99 30.06 A 110.0 110.0 0 0 1 769.99 249.94 Z" fill="#b20602" />'
+    '<text x="875" y="246" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="252" fill="#031d38">YANG</text>'
+    '<rect x="50" y="268" width="1676.65" height="7" rx="1.5" fill="#031d38" />'
+    '<rect x="50" y="282" width="1676.65" height="7" rx="1.5" fill="#b20602" />'
+    '<text x="50" y="346" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="38" letter-spacing="12" fill="#111111">BY CUPA</text>'
+    '</svg>';

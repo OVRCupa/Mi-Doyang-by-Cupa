@@ -100,7 +100,7 @@ void main() {
       await tester.pumpWidget(_crearAppPrueba());
       await tester.pumpAndSettle();
 
-      expect(find.byType(LogoMiDoyang), findsOneWidget);
+      expect(find.byType(LogoMiDoyang), findsWidgets);
       expect(find.byType(BeltWidget), findsWidgets);
       expect(find.byType(TicketTermicoWidget), findsOneWidget);
 

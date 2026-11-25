@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:mi_doyang_core/mi_doyang_core.dart';
 
+import 'logo_mi_doyang.dart';
 import 'tema_doyang.dart';
 
 /// Widget de vista previa y comprobante de pago en formato de papel térmico
@@ -48,6 +49,15 @@ class TicketTermicoWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: LogoMiDoyang(
+              compacto: true,
+              sobreOscuro: false,
+              altoPersonalizado: 26,
+            ),
+          ),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
